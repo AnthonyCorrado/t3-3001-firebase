@@ -1,7 +1,7 @@
 TicTacToe3001
 =============
 
-# Play the game that is changing the world you and I live in.
+## Play the game that is changing the world you and I live in.
 
 Critics are calling it the Shawshank Redemption of tic tac toe. 
 
