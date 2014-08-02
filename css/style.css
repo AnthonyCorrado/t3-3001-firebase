@@ -12,6 +12,7 @@ h6 {
 	line-height: 0.2;
 }
 .container {
+	overflow: hidden;
 }
 .test {
 	margin: 0 auto;
