@@ -4,18 +4,12 @@ body {
 }
 h3, h4 {
 	text-align: center;
+	font-size: 0.5em;
+	line-height: 0.3; 
 }
 h6 {
-	line-height: 0.5;
 	font-size: 6px;
-}
-@media (min-width: 650px) 
-{ 
-    h6 { font-size: .5em } 
-}
-@media (min-width: 1100px) 
-{ 
-    h6 { font-size: 1.1em } 
+	line-height: 0.2;
 }
 .container {
 }
@@ -24,13 +18,14 @@ h6 {
 	width: 9%;
 	height: 0;
 	margin: 0.5%;
-	border: 5px solid pink;
+	border: 2px solid pink;
 	padding-bottom: 8%;
 	background-color: blue;
 	display: inline-block;
 }
 .board-container {
 	margin: 0 auto;
+	margin-left: 30%;
 	width: 80%;
 	background-color: yellow;
 	position: relative;
@@ -62,10 +57,7 @@ h6 {
 	height: 0;
 	padding-bottom: 11%;
 }
-@media (min-width: 900px) 
-{ 
-    .scoreboard { padding-bottom: 8% } 
-}
+
 #main-timer {
 	margin: 0 auto;
 	width: 10%;
@@ -74,16 +66,11 @@ h6 {
 .timer-text {
 	padding: 10%;
 	text-align: center;
-	font-size: 1.5em;
-}
-@media (min-width: 900px) 
-{ 
-    .timer-text { font-size: 3em } 
+	font-size: 1.3em;
 }
 #p1-scorebox {
 	width: 15%;
 	margin-left: 5%;
-	height: 4em;
 	float: left;
 	background-color: cyan;
 }
@@ -95,7 +82,6 @@ h6 {
 }
 #p1-score {
 	width: 65%;
-	height: 4em;
 	background-color: rgb(255, 195, 0);
 	float: left;
 }
@@ -107,14 +93,12 @@ h6 {
 }
 #p1-timer {
 	width: 35%;
-	height: 4em;
 	background-color: orange;
 	float: right;
 }
 #p2-scorebox {
 	width: 15%;
 	margin-right: 5%;
-	height: 4em;
 	float: right;
 	background-color: cyan;
 }
@@ -127,7 +111,6 @@ h6 {
 }
 #p2-score {
 	width: 65%;
-	height: 4em;
 	background-color: rgb(255, 195, 0);
 	float: right;
 }
@@ -139,7 +122,6 @@ h6 {
 }
 #p2-timer {
 	width: 35%;
-	height: 4em;
 	background-color: orange;
 	float: left;
 }
@@ -151,11 +133,38 @@ h6 {
 	font-size: 1em;
 	text-align: center;
 }
+.board-cover-left {
+	position: absolute;
+	width: 38%;
+	height: 20em;
+	background-color: rgba(70, 20, 180, .7);
+	z-index: 2;
+}
+.board-cover-right {
+	position: absolute;
+	margin-left: 62%;
+	width: 38%;
+	height: 20em;
+	background-color: rgba(70, 20, 180, .7);
+	z-index: 2;
+}
+@media (min-width: 650px) 
+{ 
+    h6 { font-size: .5em; line-height: .5;  } 
+    h3, h4 {font-size: 1.5em; line-height: 0.6; }
+    .test {border: 4px solid pink; }
+    .timer-text { font-size: 2.5em }
+}
+@media (min-width: 1100px) 
+{ 
+    h6 { font-size: 1.1em; line-height: .75; }
+    h3, h4 {font-size: 2em; line-height: 1;} 
+    .test {border: 5px solid pink; }
+    #title-text { font-size: 3em }
+}
 @media (min-width: 900px) 
 { 
-    #title-text { font-size: 2em } 
-}
-@media (min-width: 1150px) 
-{ 
-    #title-text { font-size: 3em } 
+    .scoreboard { padding-bottom: 8%; }
+    #title-text { font-size: 2em; } 
+    .timer-text { font-size: 3em } 
 }
