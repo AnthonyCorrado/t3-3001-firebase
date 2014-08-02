@@ -30,10 +30,12 @@ h6 {
 	margin: 0 auto;
 	margin-left: 30%;
 	width: 80%;
+	background-color: yellow;
 	position: relative;
 }	
 .channel-right {
 	width: 10%;
+	background-color: red;
 	height: 0;
 	padding-bottom: 33%;
 	float: right;
@@ -41,6 +43,7 @@ h6 {
 }
 .channel-left {
 	width: 10%;
+	background-color: red;
 	height: 0;
 	padding-bottom: 33%;
 	float: left;
@@ -147,7 +150,7 @@ h6 {
 	position: absolute;
 	width: 38%;
 	height: 20em;
-	background-color: rgba(0, 0, 0, .7);
+	background-color: rgba(70, 20, 180, .7);
 	z-index: 2;
 }
 .board-cover-right {
@@ -155,14 +158,14 @@ h6 {
 	margin-left: 62%;
 	width: 38%;
 	height: 20em;
-	background-color: rgba(0, 0, 0, .7);
+	background-color: rgba(70, 20, 180, .7);
 	z-index: 2;
 }
 @media (min-width: 650px) 
 { 
     h6 { font-size: .5em; line-height: .5;  } 
     h3, h4 {font-size: 1.5em; line-height: 0.6; }
-    .test {border: 4px solid rgba(0, 255, 0, 1); }
+    .test {border: 4px solid pink; }
     .timer-text { font-size: 2.5em; }
     #title-text { font-size: 1.4em; }
 }
@@ -176,7 +179,7 @@ h6 {
 { 
     h6 { font-size: 1.1em; line-height: .75; }
     h3, h4 {font-size: 2em; line-height: 1;} 
-    .test {border: 5px solid rgba(0, 255, 0, 1); }
+    .test {border: 5px solid pink; }
     #title-text { font-size: 2em }
 }
 @media (min-width: 1230px) 
