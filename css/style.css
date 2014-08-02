@@ -1,0 +1,161 @@
+body {
+	background-color: black;
+	font-size: 100%;
+}
+h3, h4 {
+	text-align: center;
+}
+h6 {
+	line-height: 0.5;
+	font-size: 6px;
+}
+@media (min-width: 650px) 
+{ 
+    h6 { font-size: .5em } 
+}
+@media (min-width: 1100px) 
+{ 
+    h6 { font-size: 1.1em } 
+}
+.container {
+}
+.test {
+	margin: 0 auto;
+	width: 9%;
+	height: 0;
+	margin: 0.5%;
+	border: 5px solid pink;
+	padding-bottom: 8%;
+	background-color: blue;
+	display: inline-block;
+}
+.board-container {
+	margin: 0 auto;
+	width: 80%;
+	background-color: yellow;
+	position: relative;
+}	
+.channel-right {
+	width: 10%;
+	background-color: red;
+	height: 0;
+	padding-bottom: 33%;
+	float: right;
+
+}
+.channel-left {
+	width: 10%;
+	background-color: red;
+	height: 0;
+	padding-bottom: 33%;
+	float: left;
+}
+.nav-bar {
+	width: 100%;
+	background-color: violet;
+	height: 0;
+	padding-bottom: 5%;
+}
+.scoreboard {
+	width: 100%;
+	background-color: green;
+	height: 0;
+	padding-bottom: 11%;
+}
+@media (min-width: 900px) 
+{ 
+    .scoreboard { padding-bottom: 8% } 
+}
+#main-timer {
+	margin: 0 auto;
+	width: 10%;
+	background-color: white;
+}
+.timer-text {
+	padding: 10%;
+	text-align: center;
+	font-size: 1.5em;
+}
+@media (min-width: 900px) 
+{ 
+    .timer-text { font-size: 3em } 
+}
+#p1-scorebox {
+	width: 15%;
+	margin-left: 5%;
+	height: 4em;
+	float: left;
+	background-color: cyan;
+}
+#p1-score-name {
+	width: 65%;
+	float: left;
+	padding-left: 5%;
+	background-color: brown;
+}
+#p1-score {
+	width: 65%;
+	height: 4em;
+	background-color: rgb(255, 195, 0);
+	float: left;
+}
+#p1-timer-name {
+	width: 35%;
+	float: right;
+	background-color: rgb(165, 42, 42);
+	text-align: center;
+}
+#p1-timer {
+	width: 35%;
+	height: 4em;
+	background-color: orange;
+	float: right;
+}
+#p2-scorebox {
+	width: 15%;
+	margin-right: 5%;
+	height: 4em;
+	float: right;
+	background-color: cyan;
+}
+#p2-score-name {
+	width: 65%;
+	padding-right: 5%;
+	float: right;
+	text-align: right;
+	background-color: brown;
+}
+#p2-score {
+	width: 65%;
+	height: 4em;
+	background-color: rgb(255, 195, 0);
+	float: right;
+}
+#p2-timer-name {
+	width: 35%;
+	float: left;
+	background-color: rgb(165, 42, 42);
+	text-align: center;
+}
+#p2-timer {
+	width: 35%;
+	height: 4em;
+	background-color: orange;
+	float: left;
+}
+#title {
+	margin: 0 auto;
+	width: 30%;
+}
+#title-text {
+	font-size: 1em;
+	text-align: center;
+}
+@media (min-width: 900px) 
+{ 
+    #title-text { font-size: 2em } 
+}
+@media (min-width: 1150px) 
+{ 
+    #title-text { font-size: 3em } 
+}
