@@ -5,11 +5,13 @@ body {
 h3, h4 {
 	text-align: center;
 	font-size: 0.5em;
-	line-height: 0.3; 
+	line-height: 0.3;
+	font-family: 'Audiowide', 'cursive'; 
 }
 h6 {
 	font-size: 6px;
 	line-height: 0.2;
+	font-family: 'Audiowide', 'cursive';
 }
 .container {
 	overflow: hidden;
@@ -22,9 +24,9 @@ h6 {
 	padding-bottom: 8%;
 	display: inline-block;
 	border: 2px solid rgba(0, 255, 0, 1);
-	-webkit-box-shadow: inset -7px 7px 15px 0px rgba(0,255,0,0.55);
-	-moz-box-shadow: inset -7px 7px 15px 0px rgba(0,255,0,0.55);
-	box-shadow: inset -7px 7px 15px 0px rgba(0,255,0,0.55);
+	-webkit-box-shadow: inset -7px 7px 15px 0 rgba(0,255,0,0.55);
+	-moz-box-shadow: inset -7px 7px 15px 0 rgba(0,255,0,0.55);
+	box-shadow: inset -7px 7px 15px 0 rgba(0,255,0,0.55);
 }
 .board-container {
 	margin: 0 auto;
@@ -37,7 +39,6 @@ h6 {
 	height: 0;
 	padding-bottom: 33%;
 	float: right;
-
 }
 .channel-left {
 	width: 10%;
@@ -47,7 +48,7 @@ h6 {
 }
 .nav-bar {
 	width: 100%;
-	background: url("../images/bg_nav_metal.jpg");
+	background: url("../images/bg_nav_metal.png");
 	height: 0;
 	padding-bottom: 5%;
 }
@@ -62,91 +63,105 @@ h6 {
 	margin-top: 1%;
 	width: 10%;
 	border: 2px solid rgba(0, 255, 0, 1);
+	border-radius: 3px;
 	-webkit-box-shadow: inset -7px 7px 15px 0px rgba(0,255,0,0.55);
 	-moz-box-shadow: inset -7px 7px 15px 0px rgba(0,255,0,0.55);
 	box-shadow: inset -7px 7px 15px 0px rgba(0,255,0,0.55);
 }
 .timer-text {
-	color: white;
+	color: rgb(160, 160, 160);
 	padding: 1%;
 	text-align: center;
-	font-size: 1.3em;
+	font-size: 1em;
 	line-height: .7;
+	font-family: 'Audiowide', 'cursive';
+	text-shadow: 2px 2px 2px rgba(155, 155, 155, .7);
 }
 #p1-scorebox {
 	width: 15%;
 	margin-left: 5%;
 	margin-top: 1%;
 	float: left;
-	background-color: cyan;
+	border: 4px solid rgba(22, 120, 255, 1);
+	-webkit-box-shadow: inset -7px 7px 15px 0px rgba(13, 49, 99, 1);
+	-moz-box-shadow: inset -7px 7px 15px 0px rgba(13, 49, 99, 1);
+	box-shadow: inset -7px 7px 15px 0px rgba(13, 49, 99, 1);
 }
 #p1-score-name {
 	width: 65%;
 	float: left;
 	padding-left: 5%;
-	background-color: brown;
+	background: url("../images/bg_nav_metal.png");
+	text-shadow: 3px 3px 5px rgba(22, 120, 255, 1);
+
 }
 #p1-score {
 	width: 65%;
-	background-color: rgb(255, 195, 0);
 	float: left;
+	text-shadow: 2px 2px 2px rgba(22, 120, 255, 1);
 }
 #p1-timer-name {
 	width: 35%;
 	float: right;
-	background-color: rgb(165, 42, 42);
 	text-align: center;
+	background: url("../images/bg_nav_metal.png");
+	text-shadow: 3px 3px 5px rgba(22, 120, 255, 1);
 }
 #p1-timer {
 	width: 35%;
-	background-color: orange;
 	float: right;
+	text-shadow: 2px 2px 2px rgba(22, 120, 255, 1);
 }
 #p2-scorebox {
 	width: 15%;
 	margin-right: 5%;
 	margin-top: 1%;
 	float: right;
-	background-color: cyan;
+	border: 4px solid rgba(83, 13, 159,1);
+	-webkit-box-shadow: inset -7px 7px 15px 0px rgba(83, 13, 159,1);
+	-moz-box-shadow: inset -7px 7px 15px 0px rgba(83, 13, 159,1);
+	box-shadow: inset -7px 7px 15px 0px rgba(83, 13, 159,1);
 }
 #p2-score-name {
 	width: 65%;
 	padding-right: 5%;
 	float: right;
 	text-align: right;
-	background-color: brown;
+	background: url("../images/bg_nav_metal.png");
+	text-shadow: 3px 3px 3px rgba(83, 13, 159,1);
 }
 #p2-score {
 	width: 65%;
-	background-color: rgb(255, 195, 0);
 	float: right;
+	text-shadow: 2px 2px 2px rgba(83, 13, 159,1);
 }
 #p2-timer-name {
 	width: 35%;
 	float: left;
-	background-color: rgb(165, 42, 42);
 	text-align: center;
+	background: url("../images/bg_nav_metal.png");
+	text-shadow: 3px 3px 3px rgba(83, 13, 159,1);
 }
 #p2-timer {
 	width: 35%;
-	background-color: orange;
 	float: left;
+	text-shadow: 2px 2px 2px rgba(83, 13, 159,1);
 }
 #title {
 	margin: 0 auto;
 	width: 30%;
 }
 #title-text {
+	color: rgba(150, 150, 150, .8);
 	font-size: .7em;
 	text-align: center;
 	font-family: 'Audiowide', 'cursive';
-	color: rgba(150, 150, 150, .8);
-	text-shadow: 3px 3px 0 rgba(0, 0, 0, .5);
+	text-shadow: 3px 3px 1px rgba(50, 50, 50, .8);
 }
 .board-cover-left {
 	position: absolute;
 	width: 38%;
-	height: 20em;
+	height: 100%;
 	background-color: rgba(0, 0, 0, .7);
 	z-index: 2;
 }
@@ -154,7 +169,7 @@ h6 {
 	position: absolute;
 	margin-left: 62%;
 	width: 38%;
-	height: 20em;
+	height: 100%;
 	background-color: rgba(0, 0, 0, .7);
 	z-index: 2;
 }
@@ -163,14 +178,14 @@ h6 {
     h6 { font-size: .5em; line-height: .5;  } 
     h3, h4 {font-size: 1.5em; line-height: 0.6; }
     .test {border: 4px solid rgba(0, 255, 0, 1); }
-    .timer-text { font-size: 2.5em; }
+    .timer-text { font-size: 2em; }
     #title-text { font-size: 1.4em; }
 }
 @media (min-width: 900px) 
 { 
     .scoreboard { padding-bottom: 8%; }
     #title-text { font-size: 1.9em; } 
-    .timer-text { font-size: 3em } 
+    .timer-text { font-size: 2.5em } 
 }
 @media (min-width: 1100px) 
 { 
