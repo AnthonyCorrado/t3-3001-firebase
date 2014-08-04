@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta name="viewport" content="initial-scale=1.0">
 	<link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
 	<script type="text/javascript" src="js/foundation.min.js"></script>
 	<script type="text/javascript" src="js/mm-foundation-tpls-0.3.0.min.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
@@ -17,7 +18,7 @@
 
 <body ng-app="TicTacToe3001">
 
-	<div ng-controller="boardController" class="container">
+	<div ng-controller="MainController" class="container">
 		<div class="nav-bar">
 			<div id="title"><h1 id="title-text">TicTacToe 3001</h1></div>
 		</div>
@@ -34,16 +35,16 @@
 				<div id="p2-score"><h3>2</h3></div>
 				<div id="p2-timer"><h3>5</h3></div>
 			</div>
-			<div id="main-timer"><h1 class="timer-text">26</h1></div>
+			<div ng-click="clock()" id="main-timer"><h1 class="timer-text"> {{ timer }}</h1></div>
 		</div>
 		<div class="board-cover-left"></div>
 		<div class="board-cover-right"></div>
 
-		<div class="board-container">
+		<div ng-controller="boardController" class="board-container">
 			<div class="channel-left"></div>
 			<div class="channel-right"></div>
-			<div ng-repeat="box in boxrows" class="">
-				<div ng-repeat="col in box" class="test">{{col}}</div>
+			<div ng-repeat="box in boxrows track by $index" class="">
+				<div ng-repeat="col in box track by $index" class="test">{{ col }}</div>
 			</div>
 		</div>
 	</div>
