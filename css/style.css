@@ -24,6 +24,7 @@ h6 {
 	margin: 0 auto;
 	width: 9%;
 	height: 0;
+	color: white;
 	margin: 0.5%;
 	padding-bottom: 8%;
 	display: inline-block;
@@ -38,6 +39,12 @@ h6 {
 	-webkit-box-shadow: inset -7px 7px 15px 0 rgba(255,0,0,0.55);
 	-moz-box-shadow: inset -7px 7px 15px 0 rgba(255,0,0,0.55);
 	box-shadow: inset -7px 7px 15px 0 rgba(255,0,0,0.55);
+}
+.markers {
+	color: silver;
+	padding: 20% 9%;
+	font-size: 0.7em;
+	font-family: 'Audiowide', 'cursive'; 
 }
 .board-container {
 	margin: 0 auto;
@@ -189,20 +196,23 @@ h6 {
 	background-color: rgba(0, 0, 0, .7);
 	z-index: 2;
 }
-@media (min-width: 650px) 
+@media (min-width: 630px) 
 { 
     h6 { font-size: .5em; line-height: .5;  } 
     h3, h4 {font-size: 1.5em; line-height: 0.6; }
     .test {border: 4px solid rgba(0, 255, 0, 1); }
+    .test:hover {border: 4px solid rgba(255, 0, 0, 1); }
     .timer-text { font-size: 2em; }
     #title-text { font-size: 1.4em; }
+    .markers { font-size: 1.2em; padding: 12% 0; }
     body { border-top: 15px solid rgba(255, 255, 255, .4); }
 		body { border-bottom: 15px solid rgba(255, 255, 255, .4);}
 }
 @media (min-width: 900px) 
 { 
     .scoreboard { padding-bottom: 8%; }
-    #title-text { font-size: 1.9em; } 
+    #title-text { font-size: 1.9em; }
+    .markers { font-size: 1.7em; padding: 15% 4%; } 
     .timer-text { font-size: 2.5em } 
 }
 @media (min-width: 1100px) 
@@ -210,7 +220,9 @@ h6 {
     h6 { font-size: 1.1em; line-height: .75; }
     h3, h4 {font-size: 2em; line-height: 1;} 
     .test {border: 5px solid rgba(0, 255, 0, 1); }
+    .test:hover {border: 5px solid rgba(255, 0, 0, 1); }
     #title-text { font-size: 2em }
+    .markers { padding: 20% 9%; font-size: 2em; }
 }
 @media (min-width: 1230px) 
 { 
