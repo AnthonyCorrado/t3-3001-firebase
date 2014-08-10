@@ -5,8 +5,13 @@ var p2ScoreIds = [0];
 var p1Score = 0;
 var p2Score = 0;
 
-app.controller('boardController', function ($scope) {
+
+app.controller('boardController', ['$scope', '$interval', function ($scope, $interval) {
 	$scope.boxrows = [[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]];
+
+	$scope.score1 = p1ScoreIds;
+	$scope.score2 = p2ScoreIds;
+
 	var grid = $scope.boxrows;
 	console.log($scope.boxrows);
 	console.log(p1ScoreIds.length);
@@ -31,6 +36,7 @@ app.controller('boardController', function ($scope) {
       verticalScoreCheck(mark);
       diagonalScoreCheck(mark);
       altTurn();
+      scoreTally();
     }
 	};
 
@@ -127,7 +133,18 @@ app.controller('boardController', function ($scope) {
 	var scoreTally = function() {
 		p1Score = p1ScoreIds.length - 1;
 		p2Score = p2ScoreIds.length - 1;
-		console.log(p1Score + 'actual score');
 	};
 
-});
+	$scope.shotclock = 5;
+  var run;
+  // sets function to start the round clock
+  $scope.countdown = function() {
+    run = $interval(function() {
+    // counts until reaches zero
+      if ($scope.shotclock > 0) {
+        $scope.shotclock = $scope.shotclock - 1;
+      }
+    }, 1000);
+  };
+
+}]);
