@@ -239,7 +239,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 function specialFX(fx){
 	fxCall = fx;
 	jQuery( document ).ready(function( $ ) {
-		var flexFont = windowWidth * 0.052;
+		var flexFont = windowWidth * 0.044;
 		if (fxCall == 'half') {
 			console.log('once')
 			$('.fx-text').fadeIn(1500)
