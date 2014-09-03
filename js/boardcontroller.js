@@ -9,6 +9,7 @@ var p2Score = 0;
 var timerExpire = 0;
 var boxesFull = false;
 var fxCall = "";
+var leader = 0;
 
 app.controller('boardController', ['$scope', '$interval', function ($scope, $interval) {
 	$scope.boxrows = [[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]];
@@ -189,8 +190,16 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 	function halftimeSummary() {
 		halftimeSummary = Function("");
 		$scope.halftimeShow = true;
-		hello('half');
-
+		if (p1Score > p2Score) {
+			leader = 1;
+		}
+		else if (p2Score > p1Score) {
+			leader = 2;
+		}
+		else {
+			leader = 0;
+		}
+		specialFX('half');
 	}
 
 	// main clock and timer section ---------------------------------------->
@@ -227,20 +236,44 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 
 // special fx and animation section --------------------------->
 
-function hello(fx){
+function specialFX(fx){
 	fxCall = fx;
-jQuery( document ).ready(function( $ ) {
-	var flexFont = windowWidth * 0.055;
-	if (fxCall == 'half') {
-		$('.fx-text').fadeIn(1500)
-		.css({'font-size' : flexFont});
-    $('.fxScreen').animate({'background-color':'rgba(0, 20, 0, .5)'}, 1000)
-    // .animate({'width' : '40%'});
-
-   }
-	else if (fxCall === 'end') {
-		$('.fxScreen').animate({'background-color' : 'blue' }, 1000);
-	}
-});
+	jQuery( document ).ready(function( $ ) {
+		var flexFont = windowWidth * 0.052;
+		if (fxCall == 'half') {
+			console.log('once')
+			$('.fx-text').fadeIn(1500)
+			.css({'font-size' : flexFont});
+  $('.fxScreen').animate({'background-color':'rgba(0, 20, 0, .5)'}, 1000);
+	$('.decoration-bar').delay(2000).css({'box-shadow' : '0px 30px 20px 0px rgba(0,0,0,0.8)'});
+			if(leader === 1){
+				$('.fxScreen').delay(2000).animate({'background-color' : 'rgba(22, 120, 255, .5)' }, 1000);
+				setTimeout(function(){
+					$('.player1Lead').css({'text-shadow' : '3px 3px 3px rgba(22, 120, 255, 1)'})
+					.css({'font-size' : flexFont});
+					$('.fx-text').fadeOut(690);
+					$('.player1Lead').delay(700).fadeIn(1000);
+					$('.decoration-bar').css({'border' : '2px solid rgba(22, 120, 255, .7)'}, 'fast');
+				}, 3000);
+			}
+			else if (leader === 2) {
+				$('.fxScreen').delay(2000).animate({'background-color' : 'rgba(111, 50, 177, .5)' }, 1000);
+				setTimeout(function(){
+					$('.player2Lead').css({'text-shadow' : '3px 3px 3px rgba(111, 50, 177, 1)'})
+					.css({'font-size' : flexFont});
+					$('.fx-text').fadeOut(690);
+					$('.player2Lead').delay(700).fadeIn(1000);
+					$('.decoration-bar').css({'border' : '2px solid rgba(111, 50, 177, .7)'}, 'fast');
+				}, 3000);
+			}
+			else {
+				alert('tie');
+			}
+		}
+		else if (fxCall === 'end') {
+			console.log('once');
+			$('.fxScreen').animate({'background-color' : 'blue' }, 1000);
+		}
+	});
 }
 // end of jQuery section. Life gets boring from here --------------------->

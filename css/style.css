@@ -266,7 +266,7 @@ h6 {
 	position: absolute;
 	z-index: 3;
 }
-.fx-text {
+.fx-text, .player1Lead, .player2Lead {
 	font-size: 5em;
 	font-family: 'Audiowide', 'cursive';
 	color: #FFF;
@@ -274,13 +274,21 @@ h6 {
 	text-shadow: 3px 3px 1px rgba(0, 255, 0, .7);
 	display: none;
 }
+
 .decoration-bar {
 	width: 100%;
 	margin-top: 20%;
-	background-color: rgba(0,0,0,.5);
-	-webkit-box-shadow:  0px 10px 1px 0px rgba(0,0,0,0.8);
-	-moz-box-shadow:  0px 10px 1px 0px rgba(0,0,0,0.8);
-	box-shadow:  0px 10px 1px 0px rgba(0,0,0,0.8);
+	background-color: rgba(0,0,0,.7);
+	border: 2px solid rgba(0,255,0,.3);
+	-webkit-box-shadow:  0px 15px 1px 0px rgba(0,0,0,0.8);
+	-moz-box-shadow:  0px 15px 1px 0px rgba(0,0,0,0.8);
+	box-shadow:  0px 15px 1px 0px rgba(0,0,0,0.8);
+	  -webkit-transition: all 2.5s linear;
+    -o-transition: all 2.5s linear;
+    -moz-transition: all 2.5s linear;
+    -ms-transition: all 2.5s linear;
+    -kthtml-transition: all 2.5s linear;
+    transition: all 2.5s linear;
 }
 @media (min-width: 630px) { 
     h6 { font-size: .5em; line-height: .5;  } 
