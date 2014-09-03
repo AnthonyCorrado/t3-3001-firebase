@@ -1,10 +1,69 @@
 body {
+	width: 100%;
 	background-color: black;
-	font-size: 100%;
 	border-top: 8px solid rgba(255, 255, 255, .4);
 	border-bottom: 8px solid rgba(255, 255, 255, .4);
-
 }
+/* pregame start up screens and animations -----------------*/
+.startScreen {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-color: rgba(0,0,0,.6);
+	z-index: 3;
+}
+.startPrompt {
+	margin: 20% 25%;
+	width: 50%;
+	height: 30%;
+	padding: 1%;
+	background: url(../images/metal-box.png);
+	position: absolute;
+	border: 2px solid rgba(0, 255, 0, 1);
+	border-radius: 3px;
+	-webkit-box-shadow:  -7px 7px 15px 0px rgba(0,255,0,0.55);
+	-moz-box-shadow:  -7px 7px 15px 0px rgba(0,255,0,0.55);
+	box-shadow:  -7px 7px 15px 0px rgba(0,255,0,0.55);
+}
+.message-text {
+	color: rgba(255, 255, 255, .8);
+	font-size: 2.2em;
+	text-align: center;
+	line-height: 1.5;
+	font-family: 'Audiowide', 'cursive';
+	text-shadow: 3px 3px 1px rgba(50, 50, 50, .8);
+}
+.custom-button {
+	width: 40%;
+	height: 30%;
+	margin: 0 auto;
+	color: #FFF;
+	padding: 2%;
+	border: 5px outset lime;
+	border-radius: 5px;
+	background-color: rgba(0,0,0,.7);
+	text-align: center;
+	font-size: 2.5em;
+	line-height: .7;
+	font-family: 'Audiowide', 'cursive';
+	text-shadow: 3px 3px 3px rgba(0, 255, 0, .7);
+}
+.gameStartCountdown3, .gameStartCountdown2, .gameStartCountdown1 {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-color: rgba(0,0,0,0.7);
+	z-index: 4;
+	display: none;
+}
+.large-text3, .large-text2, .large-text1 {
+	color: #FFF;
+	text-align: center;
+	font-size: 10em;
+	font-family: 'Audiowide', 'cursive';
+	text-shadow: 3px 3px 3px rgba(0, 255, 0, .7);
+}
+
 h3, h4 {
 	text-align: center;
 	font-size: 0.5em;
@@ -22,10 +81,11 @@ h6 {
 }
 .test {
 	margin: 0 auto;
-	width: 9%;
-	height: 0;
+	width: 8.8%;
+	height: 0	;
 	color: white;
-	margin: 0.5%;
+	margin: 0.7%;
+	margin-left: 1.2%;
 	padding-bottom: 8%;
 	display: inline-block;
 	border: 2px solid rgba(0, 255, 0, 1);
@@ -48,19 +108,19 @@ h6 {
 }
 .board-container {
 	margin: 0 auto;
-	margin-left: 30%;
+	margin-left: 30.5%;
 	margin-top: 5%;
 	width: 80%;
 	position: relative;
 }	
 .channel-right {
-	width: 10%;
+	width: 6%;
 	height: 0;
 	padding-bottom: 33%;
 	float: right;
 }
 .channel-left {
-	width: 10%;
+	width: 8%;
 	height: 0;
 	padding-bottom: 33%;
 	float: left;
@@ -181,17 +241,18 @@ h6 {
 	font-family: 'Audiowide', 'cursive';
 	text-shadow: 3px 3px 1px rgba(50, 50, 50, .8);
 }
+/* board covers ----------------------------------------- */
 .board-cover-left {
 	position: absolute;
-	width: 38%;
+	width: 36.9%;
 	height: 70%;
 	background-color: rgba(0, 0, 0, .7);
 	z-index: 2;
 }
 .board-cover-right {
 	position: absolute;
-	margin-left: 62%;
-	width: 38%;
+	margin-left: 62.1%;
+	width: 39.5%;
 	height: 70%;
 	background-color: rgba(0, 0, 0, .7);
 	z-index: 2;

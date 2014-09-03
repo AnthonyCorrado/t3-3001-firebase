@@ -16,14 +16,45 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 	console.log($scope.boxrows);
 	console.log(p1ScoreIds.length);
 
+	$scope.startGame = function() {
+		$('.startScreen').fadeOut(1000);
+		$('.gameStartCountdown3').fadeIn(500);
+		$('.large-text3').animate({'font-size' : '40em'}, 1000);
+		$('.large-text3').fadeOut(1000);
+		$('.gameStartCountdown2').delay(1700).fadeIn(500);
+		$('.large-text2').delay(1700).fadeIn(500);
+		$('.large-text2').animate({'font-size' : '40em'}, 1000);
+		$('.large-text2').delay(2700).fadeOut(1000);
+		$('.gameStartCountdown1').delay(3500).fadeIn(500);
+		$('.large-text1').delay(3500).fadeIn(500);
+		$('.large-text1').animate({'font-size' : '40em'}, 1000);
+		$('.large-text1').fadeOut(1000);
+		$('.gameStartCountdown3').delay(1600).fadeOut(300);
+		$('.gameStartCountdown2').delay(1600).fadeOut(300);
+		$('.gameStartCountdown1').delay(1600).fadeOut(300);
+		setTimeout($scope.clock, 6000);
+	};
+	
+	$scope.shotclock = 5;
+  // sets function to start the round clock
+  $scope.countdown = function() {
+    run = $interval(function() {
+    // counts until reaches zero
+      if ($scope.shotclock > 0) {
+        $scope.shotclock = $scope.shotclock - 1;
+      }
+    }, 1000);
+  };
+  $scope.countdown();
+  
 	altTurn = function () {
 		if (turnNum % 2 === 0) {
 			mark = "O";
-			// p2TimerReset();
+			$scope.countdown();
 		}
 		else {
 			mark = "X";
-			// p1TimerReset();
+			console.log($scope.countdown());
 		}
 		turnNum += 1;
 		};
@@ -135,16 +166,30 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 		p2Score = p2ScoreIds.length - 1;
 	};
 
-	$scope.shotclock = 5;
+	// main clock and timer section ---------------------------------------->
+	// sets the initial round clock
+  $scope.timer = 30;
   var run;
+  var boardPosition = 21.6;
   // sets function to start the round clock
-  $scope.countdown = function() {
+  $scope.clock = function() {
     run = $interval(function() {
     // counts until reaches zero
-      if ($scope.shotclock > 0) {
-        $scope.shotclock = $scope.shotclock - 1;
+      if ($scope.timer > 0) {
+        $scope.timer = $scope.timer - 1;
+        if($scope.timer % 5 === 0 && $scope.timer > 0){
+          shiftBoard();
+        }
       }
     }, 1000);
   };
-
+  // clock reset as post round action
+  $scope.resetClock = function() {
+    $scope.timer = 30;
+  };
+  // shifting of the board ------------------------->
+  shiftBoard = function(){
+    $('.board-container').animate({'margin-left' : boardPosition + '%'});
+    boardPosition -= 8.45;
+    };
 }]);
