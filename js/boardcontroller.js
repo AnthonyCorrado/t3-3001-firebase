@@ -1,3 +1,4 @@
+var windowWidth = $(window).width();
 var mark = "X";
 var turnNum = 0;
 var p1ScoreIds = [0];
@@ -17,21 +18,23 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 	console.log(p1ScoreIds.length);
 
 	$scope.startGame = function() {
+		emScaler = windowWidth * 0.028;
 		$('.startScreen').fadeOut(1000);
-		$('.gameStartCountdown3').fadeIn(500);
-		$('.large-text3').animate({'font-size' : '40em'}, 1000);
-		$('.large-text3').fadeOut(1000);
-		$('.gameStartCountdown2').delay(1700).fadeIn(500);
-		$('.large-text2').delay(1700).fadeIn(500);
-		$('.large-text2').animate({'font-size' : '40em'}, 1000);
-		$('.large-text2').delay(2700).fadeOut(1000);
-		$('.gameStartCountdown1').delay(3500).fadeIn(500);
-		$('.large-text1').delay(3500).fadeIn(500);
-		$('.large-text1').animate({'font-size' : '40em'}, 1000);
-		$('.large-text1').fadeOut(1000);
-		$('.gameStartCountdown3').delay(1600).fadeOut(300);
-		$('.gameStartCountdown2').delay(1600).fadeOut(300);
-		$('.gameStartCountdown1').delay(1600).fadeOut(300);
+		// if(windowWidth > 840){
+			$('.gameStartCountdown3').fadeIn(500);
+			$('.large-text3').animate({'font-size' : emScaler + 'em'}, 1000);
+			$('.large-text3').fadeOut(1000);
+			$('.gameStartCountdown2').delay(1700).fadeIn(500);
+			$('.large-text2').delay(1700).fadeIn(500);
+			$('.large-text2').animate({'font-size' : emScaler + 'em'}, 1000);
+			$('.large-text2').delay(2700).fadeOut(1000);
+			$('.gameStartCountdown1').delay(3500).fadeIn(500);
+			$('.large-text1').delay(3500).fadeIn(500);
+			$('.large-text1').animate({'font-size' : emScaler + 'em'}, 1000);
+			$('.large-text1').fadeOut(1000);
+			$('.gameStartCountdown3').delay(1600).fadeOut(300);
+			$('.gameStartCountdown2').delay(1600).fadeOut(300);
+			$('.gameStartCountdown1').delay(1600).fadeOut(300);
 		setTimeout($scope.clock, 6000);
 	};
 	
