@@ -24,7 +24,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 
 	$scope.startGame = function() {
 		// bases countdown on window width
-		emScaler = windowWidth * 0.028;
+		emScaler = windowWidth * 0.024;
 		$('.startScreen').fadeOut(1000);
 			$('.gameStartCountdown3').fadeIn(500);
 			$('.large-text3').animate({'font-size' : emScaler + 'em'}, 1000);
@@ -187,19 +187,25 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 		p1Score = p1ScoreIds.length - 1;
 		p2Score = p2ScoreIds.length - 1;
 	};
+	var alertTest = function() {
+		alert('yo yo yo, T-beni go!');
+	}
+	halftimeSummary();
 	function halftimeSummary() {
 		halftimeSummary = Function("");
-		$scope.halftimeShow = true;
-		if (p1Score > p2Score) {
-			leader = 1;
-		}
-		else if (p2Score > p1Score) {
-			leader = 2;
-		}
-		else {
-			leader = 0;
-		}
-		specialFX('half');
+		setTimeout(function(){
+			$scope.halftimeShow = true;
+			if (p1Score > p2Score) {
+				leader = 1;
+			}
+			else if (p2Score > p1Score) {
+				leader = 2;
+			}
+			else {
+				leader = 0;
+			}
+			specialFX('half');
+		}, 500);
 	}
 
 	// main clock and timer section ---------------------------------------->
@@ -241,7 +247,6 @@ function specialFX(fx){
 	jQuery( document ).ready(function( $ ) {
 		var flexFont = windowWidth * 0.044;
 		if (fxCall == 'half') {
-			console.log('once')
 			$('.fx-text').fadeIn(1500)
 			.css({'font-size' : flexFont});
   $('.fxScreen').animate({'background-color':'rgba(0, 20, 0, .5)'}, 1000);
@@ -267,13 +272,25 @@ function specialFX(fx){
 				}, 3000);
 			}
 			else {
-				alert('tie');
+				setTimeout(function(){
+					$('.fx-text').fadeOut(690);
+					$.when($('.playersTied').delay(2200).fadeIn(1000)
+					.css({'font-size' : flexFont })).done(function(){ secondHalfStart();});
+				});
 			}
 		}
 		else if (fxCall === 'end') {
-			console.log('once');
 			$('.fxScreen').animate({'background-color' : 'blue' }, 1000);
 		}
+
+
 	});
 }
+	// jQuery fx flow functions ------------------------------------------------<
+
+	function secondHalfStart() {
+		jQuery( document ).ready(function( $ ) {
+		$('.fxScreen').delay(2000).animate({'background-color' : 'rgba(200, 0, 0, .5)' }, 1000);
+	});
+	}
 // end of jQuery section. Life gets boring from here --------------------->

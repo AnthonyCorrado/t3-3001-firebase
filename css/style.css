@@ -32,7 +32,7 @@ body {
 	text-align: center;
 	line-height: 1.5;
 	font-family: 'Audiowide', 'cursive';
-	text-shadow: 3px 3px 1px rgba(50, 50, 50, .8);
+	text-shadow: 4px 4px 1px rgba(50, 50, 50, .8);
 }
 .custom-button {
 	width: 40%;
@@ -266,7 +266,7 @@ h6 {
 	position: absolute;
 	z-index: 3;
 }
-.fx-text, .player1Lead, .player2Lead {
+.fx-text, .player1Lead, .player2Lead, .playersTied {
 	font-size: 5em;
 	font-family: 'Audiowide', 'cursive';
 	color: #FFF;
