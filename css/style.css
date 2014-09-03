@@ -296,11 +296,11 @@ h6 {
 }
 .fire-bar {
 	width: 100%;
-	height: 5.5em;
 	background: url(../images/fire.gif);
   position: absolute;
   display: none;
   z-index: -1;
+  overflow: hidden;
 
 }
 @media (min-width: 630px) { 
@@ -381,5 +381,11 @@ h6 {
 	}
 	.custom-button {
 		font-size: 1.2em;
+	}
+}
+@media (max-width: 640px) {
+	.test {
+		border-radius: 2px;
+		border: 2px solid rgba(0, 255, 0, .8);
 	}
 }

@@ -10,6 +10,7 @@ var timerExpire = 0;
 var boxesFull = false;
 var fxCall = "";
 var leader = 0;
+var multiplier = 1.7;
 
 app.controller('boardController', ['$scope', '$interval', function ($scope, $interval) {
 	$scope.boxrows = [[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]];
@@ -245,7 +246,10 @@ function specialFX(fx){
 	fxCall = fx;
 	jQuery( document ).ready(function( $ ) {
 		var flexFont = windowWidth * 0.044;
-		$('.decoration-bar').css({'height' : flexFont * 1.7});
+		if (windowWidth < 801) {
+			multiplier *= 1.3;
+		}
+		$('.decoration-bar').css({'height' : flexFont * multiplier});
 		if (fxCall == 'half') {
 			$('.fx-text').fadeIn(1500)
 			.css({'font-size' : flexFont});
@@ -292,6 +296,12 @@ function specialFX(fx){
 	function secondHalfStart() {
 		jQuery( document ).ready(function( $ ) {
 		var flexFont = windowWidth * 0.044;
+		if (windowWidth > 800) {
+			$('.fire-bar').css({'height' : flexFont * multiplier});
+		}
+		else {
+			$('.fire-bar').css({'height' : flexFont * (multiplier - 0.2) });
+		}
 		$('.fxScreen').delay(2000).animate({'background-color' : 'rgba(200, 0, 0, .5)' }, 500);
 		setTimeout(function(){
 			$('.decoration-bar').css({'border' : '2px solid rgba(200, 0, 0, .5)'}, 500);
@@ -299,7 +309,7 @@ function specialFX(fx){
 			$('.player1Lead, .player2Lead, .playersTied').delay(1000).fadeOut(500);
 			$('.fire-bar').delay(1500).fadeIn(1000);
 			$('.wave2Start').delay(1500).fadeIn(1000);
-			$('.wave2Start').css({'font-size' : flexFont});
+			$('.wave2Start').css({'font-size' : flexFont });
 		}, 2500);
 	});
 	}
