@@ -26,15 +26,22 @@
 			<div id="title"><h1 id="title-text">TicTacToe 3001</h1></div>
 		</div>
 		<div ng-controller="boardController" class="scoreboard">
+
 	<div class="startScreen">
 		<div class="startPrompt">
 			<h3 class="message-text">The game begins when you click</h3>
 			<div ng-click="startGame()" class="custom-button">Here</div>
 		</div>
 	</div>
+
 	<div class="gameStartCountdown3"><h1 class="large-text3">3</h1></div>
 	<div class="gameStartCountdown2"><h1 class="large-text2">2</h1></div>
 	<div class="gameStartCountdown1"><h1 class="large-text1">1</h1></div>
+
+	<div ng-show="halftimeShow" class="fxScreen">
+		<div class="decoration-bar"><h1 class="fx-text">Halftime</h1></div>
+	</div>
+
 			<div id="p1-scorebox">
 				<div id="p1-score-name"><h6>Score</h6></div>
 				<div id="p1-timer-name"><h6>Timer</h6></div>	

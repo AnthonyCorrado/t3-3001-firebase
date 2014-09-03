@@ -1,4 +1,5 @@
 var windowWidth = $(window).width();
+$.noConflict();
 var mark = "X";
 var turnNum = 0;
 var p1ScoreIds = [0];
@@ -6,13 +7,15 @@ var p2ScoreIds = [0];
 var p1Score = 0;
 var p2Score = 0;
 var timerExpire = 0;
-
+var boxesFull = false;
+var fxCall = "";
 
 app.controller('boardController', ['$scope', '$interval', function ($scope, $interval) {
 	$scope.boxrows = [[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]];
 
 	$scope.score1 = p1ScoreIds;
 	$scope.score2 = p2ScoreIds;
+	$scope.halftimeShow = false;
 
 	var grid = $scope.boxrows;
 	console.log($scope.boxrows);
@@ -42,7 +45,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 	var roundOver = function() {
     var box = $scope.boxrows;
       if ((box[0][5] == "X" || box[0][5] == "O") && (box[0][6] == "X" || box[0][6] == "O") && (box[0][7] == "X" || box[0][7] == "O") && (box[1][5] == "X" || box[1][5] == "O") && (box[1][6] == "X" || box[1][6] == "O") && (box[1][7] == "X" || box[1][7] == "O") && (box[2][5] == "X" || box[2][5] == "O") && (box[2][6] == "X" || box[2][6] == "O") && (box[2][7] == "X" || box[2][7] == "O")) {
-        alert('yo!');
+      boxesFull = true;
         // if (gameRound === 1) {
         //   $timeout(gameReset, 5000);
         //   setTimeout(function() {halftimeSummary();}, 2000);
@@ -100,7 +103,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 						isScoreIndexUnique(p1Index);
 					}
 					else {
-						p2ScoreIds.push(p2Index);
+						isScoreIndexUnique(p2Index);
 					}
 				}
 				p1Index++; p2Index--;
@@ -119,7 +122,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 					isScoreIndexUnique(p1Index);
 				}
 				else {
-					p2ScoreIds.push(p2Index);
+					isScoreIndexUnique(p2Index);
 				}
 			}
 			p1Index++; p2Index--;
@@ -149,7 +152,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 					isScoreIndexUnique(p1Index);
 				}
 				else {
-					p2ScoreIds.push(p2Index);
+					isScoreIndexUnique(p2Index);
 				}
 			}
 			p1Index++; p2Index--;
@@ -179,11 +182,16 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 			console.log(p2ScoreIds + 'p2 unique');
 		}
 	};
-
 	var scoreTally = function() {
 		p1Score = p1ScoreIds.length - 1;
 		p2Score = p2ScoreIds.length - 1;
 	};
+	function halftimeSummary() {
+		halftimeSummary = Function("");
+		$scope.halftimeShow = true;
+		hello('half');
+
+	}
 
 	// main clock and timer section ---------------------------------------->
 	// sets the initial round clock
@@ -193,9 +201,8 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
   // sets function to start the round clock
   $scope.clock = function() {
     run = $interval(function() {
-      if ($scope.timer === 0) {
-        alert('halftimeSummary!');
-        resetClock();
+      if ($scope.timer === 0 || boxesFull === true) {
+        halftimeSummary();
       }
     // counts until reaches zero
       else if ($scope.timer > 0) {
@@ -206,7 +213,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
       }
     }, 1000);
   };
-  
+// function resets game timer after first round
   var resetClock = function() {
     $scope.timer = 30;
   };
@@ -217,3 +224,23 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
     boardPosition -= 8.45;
     };
 }]);
+
+// special fx and animation section --------------------------->
+
+function hello(fx){
+	fxCall = fx;
+jQuery( document ).ready(function( $ ) {
+	var flexFont = windowWidth * 0.055;
+	if (fxCall == 'half') {
+		$('.fx-text').fadeIn(1500)
+		.css({'font-size' : flexFont});
+    $('.fxScreen').animate({'background-color':'rgba(0, 20, 0, .5)'}, 1000)
+    // .animate({'width' : '40%'});
+
+   }
+	else if (fxCall === 'end') {
+		$('.fxScreen').animate({'background-color' : 'blue' }, 1000);
+	}
+});
+}
+// end of jQuery section. Life gets boring from here --------------------->
