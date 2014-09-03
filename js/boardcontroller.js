@@ -5,6 +5,7 @@ var p1ScoreIds = [0];
 var p2ScoreIds = [0];
 var p1Score = 0;
 var p2Score = 0;
+var timerExpire = 0;
 
 
 app.controller('boardController', ['$scope', '$interval', function ($scope, $interval) {
@@ -18,9 +19,9 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 	console.log(p1ScoreIds.length);
 
 	$scope.startGame = function() {
+		// bases countdown on window width
 		emScaler = windowWidth * 0.028;
 		$('.startScreen').fadeOut(1000);
-		// if(windowWidth > 840){
 			$('.gameStartCountdown3').fadeIn(500);
 			$('.large-text3').animate({'font-size' : emScaler + 'em'}, 1000);
 			$('.large-text3').fadeOut(1000);
@@ -38,6 +39,20 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 		setTimeout($scope.clock, 6000);
 	};
 	
+	var roundOver = function() {
+    var box = $scope.boxrows;
+      if ((box[0][5] == "X" || box[0][5] == "O") && (box[0][6] == "X" || box[0][6] == "O") && (box[0][7] == "X" || box[0][7] == "O") && (box[1][5] == "X" || box[1][5] == "O") && (box[1][6] == "X" || box[1][6] == "O") && (box[1][7] == "X" || box[1][7] == "O") && (box[2][5] == "X" || box[2][5] == "O") && (box[2][6] == "X" || box[2][6] == "O") && (box[2][7] == "X" || box[2][7] == "O")) {
+        alert('yo!');
+        // if (gameRound === 1) {
+        //   $timeout(gameReset, 5000);
+        //   setTimeout(function() {halftimeSummary();}, 2000);
+        //   gameRound += 1;
+        // }
+        // else {
+        //   setTimeout(function() {determineWinner();}, 2000);
+        // }
+      }
+	};
 	$scope.shotclock = 5;
   // sets function to start the round clock
   $scope.countdown = function() {
@@ -71,6 +86,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
       diagonalScoreCheck(mark);
       altTurn();
       scoreTally();
+      roundOver();
     }
 	};
 
@@ -177,8 +193,12 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
   // sets function to start the round clock
   $scope.clock = function() {
     run = $interval(function() {
+      if ($scope.timer === 0) {
+        alert('halftimeSummary!');
+        resetClock();
+      }
     // counts until reaches zero
-      if ($scope.timer > 0) {
+      else if ($scope.timer > 0) {
         $scope.timer = $scope.timer - 1;
         if($scope.timer % 5 === 0 && $scope.timer > 0){
           shiftBoard();
@@ -186,11 +206,12 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
       }
     }, 1000);
   };
-  // clock reset as post round action
-  $scope.resetClock = function() {
+  
+  var resetClock = function() {
     $scope.timer = 30;
   };
-  // shifting of the board ------------------------->
+// clock reset as post round action
+// shifting of the board ------------------------->
   shiftBoard = function(){
     $('.board-container').animate({'margin-left' : boardPosition + '%'});
     boardPosition -= 8.45;
