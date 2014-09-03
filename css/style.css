@@ -266,19 +266,23 @@ h6 {
 	position: absolute;
 	z-index: 3;
 }
-.fx-text, .player1Lead, .player2Lead, .playersTied {
+.fx-text, .player1Lead, .player2Lead, .playersTied, .wave2Start {
 	font-size: 5em;
 	font-family: 'Audiowide', 'cursive';
 	color: #FFF;
 	text-align: center;
 	text-shadow: 3px 3px 1px rgba(0, 255, 0, .7);
 	display: none;
+	z-index: 5;
 }
-
+.wave2Start {
+	text-shadow: 3px 3px 1px rgba(255, 0, 0, .7);
+}
 .decoration-bar {
 	width: 100%;
 	margin-top: 20%;
 	background-color: rgba(0,0,0,.7);
+	/*background: url(../images/fire.gif);*/
 	border: 2px solid rgba(0,255,0,.3);
 	-webkit-box-shadow:  0px 15px 1px 0px rgba(0,0,0,0.8);
 	-moz-box-shadow:  0px 15px 1px 0px rgba(0,0,0,0.8);
@@ -289,6 +293,15 @@ h6 {
     -ms-transition: all 2.5s linear;
     -kthtml-transition: all 2.5s linear;
     transition: all 2.5s linear;
+}
+.fire-bar {
+	width: 100%;
+	height: 5.5em;
+	background: url(../images/fire.gif);
+  position: absolute;
+  display: none;
+  z-index: -1;
+
 }
 @media (min-width: 630px) { 
     h6 { font-size: .5em; line-height: .5;  } 

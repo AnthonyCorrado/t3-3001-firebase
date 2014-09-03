@@ -189,8 +189,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 	};
 	var alertTest = function() {
 		alert('yo yo yo, T-beni go!');
-	}
-	halftimeSummary();
+	};
 	function halftimeSummary() {
 		halftimeSummary = Function("");
 		setTimeout(function(){
@@ -246,6 +245,7 @@ function specialFX(fx){
 	fxCall = fx;
 	jQuery( document ).ready(function( $ ) {
 		var flexFont = windowWidth * 0.044;
+		$('.decoration-bar').css({'height' : flexFont * 1.7});
 		if (fxCall == 'half') {
 			$('.fx-text').fadeIn(1500)
 			.css({'font-size' : flexFont});
@@ -259,7 +259,7 @@ function specialFX(fx){
 					$('.fx-text').fadeOut(690);
 					$('.player1Lead').delay(700).fadeIn(1000);
 					$('.decoration-bar').css({'border' : '2px solid rgba(22, 120, 255, .7)'}, 'fast');
-				}, 3000);
+				}, 2500);
 			}
 			else if (leader === 2) {
 				$('.fxScreen').delay(2000).animate({'background-color' : 'rgba(111, 50, 177, .5)' }, 1000);
@@ -269,28 +269,43 @@ function specialFX(fx){
 					$('.fx-text').fadeOut(690);
 					$('.player2Lead').delay(700).fadeIn(1000);
 					$('.decoration-bar').css({'border' : '2px solid rgba(111, 50, 177, .7)'}, 'fast');
-				}, 3000);
+				}, 2500);
 			}
 			else {
 				setTimeout(function(){
 					$('.fx-text').fadeOut(690);
-					$.when($('.playersTied').delay(2200).fadeIn(1000)
-					.css({'font-size' : flexFont })).done(function(){ secondHalfStart();});
+					$('.playersTied').delay(2200).fadeIn(1000)
+					.css({'font-size' : flexFont });
 				});
 			}
+			setTimeout(function(){
+				secondHalfStart();
+			}, 2000);
 		}
 		else if (fxCall === 'end') {
 			$('.fxScreen').animate({'background-color' : 'blue' }, 1000);
 		}
-
-
 	});
 }
 	// jQuery fx flow functions ------------------------------------------------<
 
 	function secondHalfStart() {
 		jQuery( document ).ready(function( $ ) {
-		$('.fxScreen').delay(2000).animate({'background-color' : 'rgba(200, 0, 0, .5)' }, 1000);
+		var flexFont = windowWidth * 0.044;
+		$('.fxScreen').delay(2000).animate({'background-color' : 'rgba(200, 0, 0, .5)' }, 500);
+		setTimeout(function(){
+			$('.decoration-bar').css({'border' : '2px solid rgba(200, 0, 0, .5)'}, 500);
+			$('.decoration-bar').css({'background-color' : 'rgba(0,0,0,.4)'});
+			$('.player1Lead, .player2Lead, .playersTied').delay(1000).fadeOut(500);
+			$('.fire-bar').delay(1500).fadeIn(1000);
+			$('.wave2Start').delay(1500).fadeIn(1000);
+			$('.wave2Start').css({'font-size' : flexFont});
+		}, 2500);
 	});
 	}
 // end of jQuery section. Life gets boring from here --------------------->
+
+
+
+
+// .css({'font-size' : flexFont })).done(function(){ secondHalfStart();});
