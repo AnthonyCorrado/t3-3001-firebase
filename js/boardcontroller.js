@@ -219,7 +219,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 		p1Score = p1ScoreIds.length - 1;
 		p2Score = p2ScoreIds.length - 1;
 	};
-	
+
 	function halftimeSummary() {
 		halftimeSummary = Function("");
 		setTimeout(function(){
@@ -284,7 +284,7 @@ function specialFX(fx){
 			.css({'font-size' : flexFont});
   $('.fxScreen').animate({'background-color':'rgba(0, 20, 0, .5)'}, 1000);
 	$('.decoration-bar').delay(2000).css({'box-shadow' : '0px 30px 20px 0px rgba(0,0,0,0.8)'});
-			if(leader === 0){
+			if(leader === 1){
 				$('.fxScreen').delay(2000).animate({'background-color' : 'rgba(22, 120, 255, .5)' }, 1000);
 				setTimeout(function(){
 					$('.player1Lead').css({'text-shadow' : '3px 3px 3px rgba(22, 120, 255, 1)'})
