@@ -13,6 +13,15 @@ var leader = 0;
 var multiplier = 1.7;
 var markerSize = windowWidth * 0.035;
 
+$(window).load(function() {
+	if (windowWidth > 800) {
+		$('.sub-font-scale').css({'font-size' : windowWidth * 0.025 });
+	}
+	else	{
+		$('.sub-font-scale').css({'font-size' : windowWidth * 0.03 });
+	}
+});
+
 app.controller('boardController', ['$scope', '$interval', function ($scope, $interval) {
 	$scope.boxrows = [[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]];
 
@@ -25,7 +34,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 	console.log(p1ScoreIds.length);
 
 	$scope.startGame = function() {
-		// bases countdown on window width
+		// bases countdown size on window width
 		fontScaler();
 		emScaler = windowWidth * 0.024;
 		$('.startScreen').fadeOut(1000);
