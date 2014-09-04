@@ -50,7 +50,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 		$('.wave1Start').delay(1500).fadeIn(1000);
 		$('.wave1Start').css({'font-size' : flexFont });
 		// $('.wave1-bar').delay(2500).fadeOut(2000);
-		$('.fxScreenOpen').delay(1500).fadeOut(1500);
+		$('.fxScreenOpen').delay(2000).fadeOut(2000);
 		// $('.wave1Start').delay(2500).fadeOut(2000);
 		setTimeout(function(){
 			$('.gameStartCountdown3').fadeIn(500);
@@ -67,7 +67,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 			$('.gameStartCountdown3').delay(1600).fadeOut(300);
 			$('.gameStartCountdown2').delay(1600).fadeOut(300);
 			$('.gameStartCountdown1').delay(1600).fadeOut(300);
-			setTimeout($scope.halftimeShow = false);
+			setTimeout($scope.halftimeShow = false, 2000);
 			setTimeout($scope.clock, 6000);
 		},5000);
 	};

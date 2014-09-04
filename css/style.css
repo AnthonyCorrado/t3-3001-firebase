@@ -281,7 +281,7 @@ span {
 }
 
 /* halftime show and fx -------------------------*/
-.fxScreen, .fx-text, .player1Lead, .player2Lead, .playersTied, .wave1Start, .wave2Start, .decoration-bar, .fire-bar {
+.fxScreen, .fx-text, .fxScreenOpen, .player1Lead, .player2Lead, .playersTied, .wave1Start, .wave2Start, .decoration-bar, .wave1-bar, .fire-bar {
 	transform: translate3d(0,0,0);
 	-webkit-transform: translate3d(0,0,0);
 	-webkit-transform: translateZ(0);
@@ -291,8 +291,6 @@ span {
 	height: 100%;
 	position: absolute;
 	z-index: 3;
-	background-color: rgba(0, 60, 0, 0.4);
-	display: none;
 }
 .fxScreen {
 	width: 100%;
