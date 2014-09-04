@@ -17,13 +17,17 @@ var emScaler = windowWidth * 0.024;
 
 $(window).ready(function() {
 	fontScaler();
-	if (windowWidth > 800) {
-		$('.sub-font-scale').css({'font-size' : windowWidth * 0.025 });
-		$('.board-cover-center').css({'height' : windowWidth * 0.26 });
+	if (windowWidth > 800 && windowWidth < 1200) {
+		$('.sub-font-scale').css({'font-size' : windowWidth * 0.024 });
+		$('.board-cover-center').css({'height' : windowWidth * 0.255 });
 	}
-	else	{
+	else if (windowWidth < 801)	{
 		$('.sub-font-scale').css({'font-size' : windowWidth * 0.035 });
 		$('.board-cover-center').css({'height' : windowWidth * 0.33 });
+	}
+	else {
+		$('.sub-font-scale').css({'font-size' : windowWidth * 0.025 });
+		$('.board-cover-center').css({'height' : windowWidth * 0.24 });
 	}
 });
 $(function() {
@@ -32,6 +36,10 @@ $(function() {
 
 app.controller('boardController', ['$scope', '$interval', function ($scope, $interval) {
 	$scope.boxrows = [[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]];
+
+	clearBoard = function() {
+		$scope.boxrows = [[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]];
+	};
 
 	$scope.score1 = p1ScoreIds;
 	$scope.score2 = p2ScoreIds;
@@ -42,6 +50,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 	console.log($scope.boxrows);
 	console.log(p1ScoreIds.length);
 
+// ------------- cues up game and starts intro animations -------------->
 	$scope.startGame = function() {
 		// bases countdown size on window width		
 		if (windowWidth < 801) {
@@ -69,7 +78,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 			$('.large-text1').delay(3500).fadeIn(500);
 			$('.large-text1').animate({'font-size' : emScaler + 'em'}, 1000);
 			$('.large-text1').fadeOut(1000);
-			$('.board-cover-center').css({'background-color' : 'rgba(0,255,0,0.4)'});
+			$('.board-cover-center').css({'background-color' : 'rgba(0,255,0,0.3)'});
 			$('.gameStartCountdown3').delay(1600).fadeOut(300);
 			$('.gameStartCountdown2').delay(1600).fadeOut(300);
 			$('.gameStartCountdown1').delay(1600).fadeOut(300);
@@ -78,6 +87,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 			setTimeout($scope.clock, 6000);
 		},5000);
 	};
+// ----------------------------------------------------------
 
 	var roundOver = function() {
     var box = $scope.boxrows;
@@ -224,6 +234,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 		p2Score = p2ScoreIds.length - 1;
 	};
 
+
 	function halftimeSummary() {
 		halftimeSummary = Function("");
 		setTimeout(function(){
@@ -238,6 +249,11 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 				leader = 0;
 			}
 			specialFX('half');
+			setTimeout(function(){
+				boxesFull = false;
+				
+				setTimeout($scope.clock, 5000);
+			}, 6000);
 		}, 500);
 	}
 
@@ -336,16 +352,36 @@ function specialFX(fx){
 			}
 			$('.fxScreen').delay(2000).animate({'background-color' : 'rgba(200, 0, 0, .5)' }, 500);
 			setTimeout(function(){
+				
 				$('.decoration-bar').css({'border' : '2px solid rgba(200, 0, 0, .5)'}, 500);
 				$('.decoration-bar').css({'background-color' : 'rgba(0,0,0,.4)'});
 				$('.player1Lead, .player2Lead, .playersTied').delay(1000).fadeOut(500);
 				$('.fire-bar').delay(1500).fadeIn(1000);
 				$('.wave2Start').delay(1500).fadeIn(1000);
 				$('.wave2Start').css({'font-size' : flexFont });
+				$('.fxScreen').delay(3500).fadeOut(1000);
+				$('#main-timer').delay(1000).css({"opacity" : '0.1'});
+				$('.test').fadeOut(1000);
+				setTimeout(function(){
+					boxColorChange();
+					clearBoard();
+					$scope.timer = 30;
+				}, 3000);
 			}, 2500);
 		});
 	}
-
+	function boxColorChange() {
+		$('.test').css({
+			'border' : '5px solid rgba(255, 0, 0, 1)',
+			'boxShadow' : 'inset -7px 7px 15px 0 rgba(255,0,0,0.55)'
+		});
+		$('#main-timer').css({
+			'border' : '2px solid rgba(255, 0, 0, 1)',
+			'boxShadow' : 'inset -7px 7px 15px 0 rgba(255,0,0,0.55)'
+		});
+		$('.test').fadeIn(1500);
+		$('#main-timer').css({'opacity' : '1'});
+	}
 	function fontScaler() {
 		jQuery( document ).ready(function( $ ) {
 			$('.markers').css({'font-size' : markerSize });

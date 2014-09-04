@@ -102,6 +102,7 @@ h6 {
 	-webkit-box-shadow: inset -7px 7px 15px 0 rgba(0,255,0,0.55);
 	-moz-box-shadow: inset -7px 7px 15px 0 rgba(0,255,0,0.55);
 	box-shadow: inset -7px 7px 15px 0 rgba(0,255,0,0.55);
+
 }
 .test:hover {
 	border: 2px solid rgba(255, 0, 0, 1);
@@ -115,12 +116,14 @@ h6 {
 	padding-top: 9%;
 	font-family: 'Audiowide', 'cursive'; 
 	text-align: center;
+	z-index: 20;
 }
 span {
 	font-size: 0;
 	width: 1%;
 	background-color: yellow;
 }
+
 .board-container {
 	margin: 0 auto;
 	margin-left: 30.5%;
