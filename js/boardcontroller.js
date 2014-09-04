@@ -19,9 +19,11 @@ $(window).ready(function() {
 	fontScaler();
 	if (windowWidth > 800) {
 		$('.sub-font-scale').css({'font-size' : windowWidth * 0.025 });
+		$('.board-cover-center').css({'height' : windowWidth * 0.26 });
 	}
 	else	{
-		$('.sub-font-scale').css({'font-size' : windowWidth * 0.03 });
+		$('.sub-font-scale').css({'font-size' : windowWidth * 0.035 });
+		$('.board-cover-center').css({'height' : windowWidth * 0.33 });
 	}
 });
 $(function() {
@@ -67,9 +69,11 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 			$('.large-text1').delay(3500).fadeIn(500);
 			$('.large-text1').animate({'font-size' : emScaler + 'em'}, 1000);
 			$('.large-text1').fadeOut(1000);
+			$('.board-cover-center').css({'background-color' : 'rgba(0,255,0,0.4)'});
 			$('.gameStartCountdown3').delay(1600).fadeOut(300);
 			$('.gameStartCountdown2').delay(1600).fadeOut(300);
 			$('.gameStartCountdown1').delay(1600).fadeOut(300);
+			$('.board-cover-center').delay(4000).fadeOut(2000);
 			setTimeout($scope.halftimeShow = false, 2000);
 			setTimeout($scope.clock, 6000);
 		},5000);
