@@ -71,11 +71,16 @@
 			<div class="channel-left"></div>
 			<div class="channel-right"></div>
 			<div ng-repeat="box in boxrows track by $index" class="">
-				<div ng-repeat="col in box track by $index" ng-click="makeMove($parent.$index, $index);" class="test"><h1 class="markers"><span style="opacity: 0">_</span>{{ col }}</h1></div>
+				<div ng-repeat="col in box track by $index" ng-click="makeMove($parent.$index, $index)" class="test">
+					<div class="box-fill">
+						<h1 class="markers"><span>_</span>{{ col }}</h1>
+					</div>
+					<!-- <h1 class="markers"></h1> -->
+				</div>
 			</div>
 		</div>
 
 	</div>
-
+<!-- <span style="opacity: 0">_</span> -->
 </body>
 </html>

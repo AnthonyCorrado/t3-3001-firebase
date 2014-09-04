@@ -83,11 +83,11 @@ h6 {
 .test {
 	margin: 0 auto;
 	width: 8.8%;
-	height: 0	;
+	height: 70px	;
 	color: white;
 	margin: 0.7%;
-	margin-left: 1.2%;
 	padding-bottom: 8%;
+	margin-left: 1.2%;
 	display: inline-block;
 	border: 2px solid rgba(0, 255, 0, 1);
 	border-radius: 5px;
@@ -103,9 +103,15 @@ h6 {
 }
 .markers {
 	color: silver;
-	padding: 20% 9%;
-	font-size: 0.7em;
+	width: 100%;
+	padding-top: 9%;
 	font-family: 'Audiowide', 'cursive'; 
+	text-align: center;
+}
+span {
+	font-size: 0;
+	width: 1%;
+	background-color: yellow;
 }
 .board-container {
 	margin: 0 auto;
@@ -310,7 +316,6 @@ h6 {
     .test:hover {border: 4px solid rgba(255, 0, 0, 1); }
     .timer-text { font-size: 2em; }
     #title-text { font-size: 1.4em; }
-    .markers { font-size: 1.2em; padding: 12% 0; }
     body { border-top: 15px solid rgba(255, 255, 255, .4); }
 		body { border-bottom: 15px solid rgba(255, 255, 255, .4);}
 }
@@ -318,7 +323,6 @@ h6 {
 @media (min-width: 900px) { 
     .scoreboard { padding-bottom: 8%; }
     #title-text { font-size: 1.9em; }
-    .markers { font-size: 1.7em; padding: 15% 4%; } 
     .timer-text { font-size: 2.5em } 
 }
 
@@ -327,8 +331,7 @@ h6 {
     h3, h4 {font-size: 2em; line-height: 1;} 
     .test {border: 5px solid rgba(0, 255, 0, 1); }
     .test:hover {border: 5px solid rgba(255, 0, 0, 1); }
-    #title-text { font-size: 2em }
-    .markers { padding: 20% 9%; font-size: 2em; }
+    #title-text { font-size: 2em }}
 }
 
 @media (min-width: 1230px) { 

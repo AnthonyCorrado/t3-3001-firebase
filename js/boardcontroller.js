@@ -11,6 +11,7 @@ var boxesFull = false;
 var fxCall = "";
 var leader = 0;
 var multiplier = 1.7;
+var markerSize = windowWidth * 0.035;
 
 app.controller('boardController', ['$scope', '$interval', function ($scope, $interval) {
 	$scope.boxrows = [[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]];
@@ -25,6 +26,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 
 	$scope.startGame = function() {
 		// bases countdown on window width
+		fontScaler();
 		emScaler = windowWidth * 0.024;
 		$('.startScreen').fadeOut(1000);
 			$('.gameStartCountdown3').fadeIn(500);
@@ -295,23 +297,29 @@ function specialFX(fx){
 
 	function secondHalfStart() {
 		jQuery( document ).ready(function( $ ) {
-		var flexFont = windowWidth * 0.044;
-		if (windowWidth > 800) {
-			$('.fire-bar').css({'height' : flexFont * multiplier});
-		}
-		else {
-			$('.fire-bar').css({'height' : flexFont * (multiplier - 0.2) });
-		}
-		$('.fxScreen').delay(2000).animate({'background-color' : 'rgba(200, 0, 0, .5)' }, 500);
-		setTimeout(function(){
-			$('.decoration-bar').css({'border' : '2px solid rgba(200, 0, 0, .5)'}, 500);
-			$('.decoration-bar').css({'background-color' : 'rgba(0,0,0,.4)'});
-			$('.player1Lead, .player2Lead, .playersTied').delay(1000).fadeOut(500);
-			$('.fire-bar').delay(1500).fadeIn(1000);
-			$('.wave2Start').delay(1500).fadeIn(1000);
-			$('.wave2Start').css({'font-size' : flexFont });
-		}, 2500);
-	});
+			var flexFont = windowWidth * 0.044;
+			if (windowWidth > 800) {
+				$('.fire-bar').css({'height' : flexFont * multiplier});
+			}
+			else {
+				$('.fire-bar').css({'height' : flexFont * (multiplier - 0.2) });
+			}
+			$('.fxScreen').delay(2000).animate({'background-color' : 'rgba(200, 0, 0, .5)' }, 500);
+			setTimeout(function(){
+				$('.decoration-bar').css({'border' : '2px solid rgba(200, 0, 0, .5)'}, 500);
+				$('.decoration-bar').css({'background-color' : 'rgba(0,0,0,.4)'});
+				$('.player1Lead, .player2Lead, .playersTied').delay(1000).fadeOut(500);
+				$('.fire-bar').delay(1500).fadeIn(1000);
+				$('.wave2Start').delay(1500).fadeIn(1000);
+				$('.wave2Start').css({'font-size' : flexFont });
+			}, 2500);
+		});
+	}
+
+	function fontScaler() {
+		jQuery( document ).ready(function( $ ) {
+			$('.markers').css({'font-size' : markerSize });
+		});
 	}
 // end of jQuery section. Life gets boring from here --------------------->
 
