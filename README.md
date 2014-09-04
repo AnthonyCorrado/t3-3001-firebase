@@ -3,7 +3,7 @@ TicTacToe3001
 
 ## Play the game that is changing the world you and I live in.
 
-Critics are calling it the Shawshank Redemption of tic tac toe. See the almost completed demo here --> tictactoe3001.herokuapp.com
+Critics are calling it the Shawshank Redemption of tic tac toe. See the almost completed demo here --> http://tictactoe3001.herokuapp.com/
 
 ## Game Play
 
