@@ -13,10 +13,10 @@ The match is based on a main game clock and player shot clocks . The board consi
 
 When the final nine blocks are filled or the timer reaches 0 the game is over. The score is then tallied and a winner is determined. 
 
-## What Was Used:
+## What Was Used
 
 The meat: JavaScript and Angular. The potatoes: CSS and Foundation 5.
 
-## Contact:
+## Contact
 If you have any feedback, comments, or questions, please reach out! Contact me through Github or via Gmail. The choice I leave up to you. Thanks in advance! 
 Anthony - anthonymcorrado@gmail.com
