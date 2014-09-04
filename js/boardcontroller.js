@@ -10,6 +10,7 @@ var timerExpire = 0;
 var boxesFull = false;
 var fxCall = "";
 var leader = 0;
+var flexFont = windowWidth * 0.044;
 var multiplier = 1.7;
 var markerSize = windowWidth * 0.035;
 
@@ -28,6 +29,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 	$scope.score1 = p1ScoreIds;
 	$scope.score2 = p2ScoreIds;
 	$scope.halftimeShow = false;
+	$scope.introShow = false;
 
 	var grid = $scope.boxrows;
 	console.log($scope.boxrows);
@@ -37,7 +39,20 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 		// bases countdown size on window width
 		fontScaler();
 		emScaler = windowWidth * 0.024;
+		if (windowWidth < 801) {
+			multiplier *= 1.3;
+		}
+		$('.wave1-bar').fadeIn(1000);
+		$('.wave1-bar').css({'height' : flexFont * multiplier});
+		$scope.introShow = true;
 		$('.startScreen').fadeOut(1000);
+		$('.fxScreenOpen').delay(1000).fadeIn(1000);
+		$('.wave1Start').delay(1500).fadeIn(1000);
+		$('.wave1Start').css({'font-size' : flexFont });
+		// $('.wave1-bar').delay(2500).fadeOut(2000);
+		$('.fxScreenOpen').delay(1500).fadeOut(1500);
+		// $('.wave1Start').delay(2500).fadeOut(2000);
+		setTimeout(function(){
 			$('.gameStartCountdown3').fadeIn(500);
 			$('.large-text3').animate({'font-size' : emScaler + 'em'}, 1000);
 			$('.large-text3').fadeOut(1000);
@@ -52,9 +67,11 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 			$('.gameStartCountdown3').delay(1600).fadeOut(300);
 			$('.gameStartCountdown2').delay(1600).fadeOut(300);
 			$('.gameStartCountdown1').delay(1600).fadeOut(300);
-		setTimeout($scope.clock, 6000);
+			setTimeout($scope.halftimeShow = false);
+			setTimeout($scope.clock, 6000);
+		},5000);
 	};
-	
+
 	var roundOver = function() {
     var box = $scope.boxrows;
       if ((box[0][5] == "X" || box[0][5] == "O") && (box[0][6] == "X" || box[0][6] == "O") && (box[0][7] == "X" || box[0][7] == "O") && (box[1][5] == "X" || box[1][5] == "O") && (box[1][6] == "X" || box[1][6] == "O") && (box[1][7] == "X" || box[1][7] == "O") && (box[2][5] == "X" || box[2][5] == "O") && (box[2][6] == "X" || box[2][6] == "O") && (box[2][7] == "X" || box[2][7] == "O")) {
@@ -199,9 +216,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 		p1Score = p1ScoreIds.length - 1;
 		p2Score = p2ScoreIds.length - 1;
 	};
-	var alertTest = function() {
-		alert('yo yo yo, T-beni go!');
-	};
+
 	function halftimeSummary() {
 		halftimeSummary = Function("");
 		setTimeout(function(){
@@ -255,8 +270,8 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 
 function specialFX(fx){
 	fxCall = fx;
+	multiplier = 1.7;
 	jQuery( document ).ready(function( $ ) {
-		var flexFont = windowWidth * 0.044;
 		if (windowWidth < 801) {
 			multiplier *= 1.3;
 		}
@@ -306,7 +321,6 @@ function specialFX(fx){
 
 	function secondHalfStart() {
 		jQuery( document ).ready(function( $ ) {
-			var flexFont = windowWidth * 0.044;
 			if (windowWidth > 800) {
 				$('.fire-bar').css({'height' : flexFont * multiplier});
 			}
