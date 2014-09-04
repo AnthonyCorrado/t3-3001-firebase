@@ -15,7 +15,7 @@ When the final nine blocks are filled or the timer reaches 0 the game is over. T
 
 ## What Was Used
 
-The meat: JavaScript and Angular. The potatoes: CSS and Foundation 5.
+The meat: JavaScript and Angular. The potatoes: CSS and Foundation 5. The icing on the cake...if you like meat and potatoes cake: jQuery. A whole heaping of it. 
 
 ## Contact
 If you have any feedback, comments, or questions, please reach out! Contact me through Github or via Gmail. The choice I leave up to you. Thanks in advance! 
