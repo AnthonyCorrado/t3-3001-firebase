@@ -59,7 +59,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 			$('.gameStartCountdown2').delay(1700).fadeIn(500);
 			$('.large-text2').delay(1700).fadeIn(500);
 			$('.large-text2').animate({'font-size' : emScaler + 'em'}, 1000);
-			$('.large-text2').delay(2700).fadeOut(1000);
+			$('.large-text2').fadeOut(1000);
 			$('.gameStartCountdown1').delay(3500).fadeIn(500);
 			$('.large-text1').delay(3500).fadeIn(500);
 			$('.large-text1').animate({'font-size' : emScaler + 'em'}, 1000);
