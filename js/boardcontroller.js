@@ -13,8 +13,10 @@ var leader = 0;
 var flexFont = windowWidth * 0.044;
 var multiplier = 1.7;
 var markerSize = windowWidth * 0.035;
+var emScaler = windowWidth * 0.024;
 
-$(window).load(function() {
+$(window).ready(function() {
+	fontScaler();
 	if (windowWidth > 800) {
 		$('.sub-font-scale').css({'font-size' : windowWidth * 0.025 });
 	}
@@ -36,9 +38,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 	console.log(p1ScoreIds.length);
 
 	$scope.startGame = function() {
-		// bases countdown size on window width
-		fontScaler();
-		emScaler = windowWidth * 0.024;
+		// bases countdown size on window width		
 		if (windowWidth < 801) {
 			multiplier *= 1.3;
 		}
