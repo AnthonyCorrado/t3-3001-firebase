@@ -14,6 +14,8 @@ var flexFont = windowWidth * 0.044;
 var multiplier = 1.7;
 var markerSize = windowWidth * 0.035;
 var emScaler = windowWidth * 0.024;
+var roundCount = 1;
+var boardPosition2 = -12.5;
 
 $(window).ready(function() {
 	fontScaler();
@@ -94,6 +96,8 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
     var box = $scope.boxrows;
       if ((box[0][5] == "X" || box[0][5] == "O") && (box[0][6] == "X" || box[0][6] == "O") && (box[0][7] == "X" || box[0][7] == "O") && (box[1][5] == "X" || box[1][5] == "O") && (box[1][6] == "X" || box[1][6] == "O") && (box[1][7] == "X" || box[1][7] == "O") && (box[2][5] == "X" || box[2][5] == "O") && (box[2][6] == "X" || box[2][6] == "O") && (box[2][7] == "X" || box[2][7] == "O")) {
       boxesFull = true;
+      setTimeout($scope.timer = 0, 4000);
+      
         // if (gameRound === 1) {
         //   $timeout(gameReset, 5000);
         //   setTimeout(function() {halftimeSummary();}, 2000);
@@ -252,15 +256,14 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 			specialFX('half');
 			setTimeout(function(){
 				boxesFull = false;
-				$.scope.timer = 30;
-				setTimeout($scope.clock, 5000);
+				setTimeout($scope.roundStart, 4000);
 			}, 6000);
 		}, 500);
 	}
 
 	// main clock and timer section ---------------------------------------->
 	// sets the initial round clock
-	var roundCount = 1;
+	
 	var run;
 	var boardPosition = 21.6;
 	$scope.roundStart = function (){
@@ -270,12 +273,16 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 			run = $interval(function(){
 				if ($scope.timer === 0 || boxesFull === true) {
 					if (roundCount === 1) {
-						halftimeSummary();
 						roundCount++;
+						halftimeSummary();
+						$('.board-container').animate({'margin-left' : boardPosition2 + '%'});
 					}
 					else {
-						gameOverSummary();
+						if ($scope.timer === 0 || boxesFull === true) {
+							gameOverSummary();
+						}
 					}
+
 				}
 		// counts until reaches zero
 				else if ($scope.timer > 0) {
@@ -285,10 +292,13 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 				if (roundCount === 1){
 					if($scope.timer % 5 === 0 && $scope.timer > 0){
 						shiftBoard();
+						console.log(boardPosition2);
 					}
 				}
 				else {
-					
+					if($scope.timer % 3 === 0 && $scope.timer > 15){
+						shiftBoardLeft();
+					}
 				}
 			}, 1000);
 		};
@@ -303,7 +313,12 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
   shiftBoard = function(){
     $('.board-container').animate({'margin-left' : boardPosition + '%'});
     boardPosition -= 8.45;
-    };
+  };
+
+  shiftBoardLeft = function(){
+    boardPosition2 += 8.45;
+    $('.board-container').animate({'margin-left' : boardPosition2 + '%'});
+  };
 }]);
 
 // special fx and animation section --------------------------->
