@@ -11,7 +11,7 @@ body {
 	height: 100%;
 	position: absolute;
 	background-color: rgba(0,0,0,.6);
-	z-index: 3;
+	z-index: 6;
 }
 .startPrompt {
 	margin: 20% 25%;
@@ -53,7 +53,7 @@ body {
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	background-color: rgba(0,0,0,0.7);
+
 	z-index: 4;
 	display: none;
 	transform: translate3d(0,0,0);
@@ -102,6 +102,7 @@ h6 {
 	-webkit-box-shadow: inset -7px 7px 15px 0 rgba(0,255,0,0.55);
 	-moz-box-shadow: inset -7px 7px 15px 0 rgba(0,255,0,0.55);
 	box-shadow: inset -7px 7px 15px 0 rgba(0,255,0,0.55);
+
 }
 .test:hover {
 	border: 2px solid rgba(255, 0, 0, 1);
@@ -115,12 +116,14 @@ h6 {
 	padding-top: 9%;
 	font-family: 'Audiowide', 'cursive'; 
 	text-align: center;
+	z-index: 20;
 }
 span {
 	font-size: 0;
 	width: 1%;
 	background-color: yellow;
 }
+
 .board-container {
 	margin: 0 auto;
 	margin-left: 30.5%;
@@ -266,6 +269,7 @@ span {
 /* board covers ----------------------------------------- */
 .board-cover-left {
 	position: absolute;
+	margin-top: 3%;
 	width: 36.9%;
 	height: 70%;
 	background-color: rgba(0, 0, 0, .7);
@@ -274,10 +278,31 @@ span {
 .board-cover-right {
 	position: absolute;
 	margin-left: 62.1%;
+	margin-top: 3%;
 	width: 39.5%;
 	height: 70%;
 	background-color: rgba(0, 0, 0, .7);
 	z-index: 2;
+}
+.board-cover-center {
+	position: absolute;
+	margin-left: 37%;
+	margin-top: 5%;
+	width: 25%;
+	height: 49%;
+	background-color: rgba(0, 0, 0, .7);
+	z-index: 2;
+	border-radius: 3px;
+	transition: background-color 2s linear;
+	transition-delay: 2.5s;
+}
+.board-cover-bottom {
+	width: 100%;
+	height: 100px;
+	margin-top: -0.3%;
+	position: absolute;
+	background-color: #000;
+	z-index: 3;
 }
 
 /* halftime show and fx -------------------------*/

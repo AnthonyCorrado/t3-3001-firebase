@@ -14,14 +14,19 @@ var flexFont = windowWidth * 0.044;
 var multiplier = 1.7;
 var markerSize = windowWidth * 0.035;
 var emScaler = windowWidth * 0.024;
+var roundCount = 1;
+var boardPosition2 = -12.5;
 
 $(window).ready(function() {
 	fontScaler();
-	if (windowWidth > 800) {
-		$('.sub-font-scale').css({'font-size' : windowWidth * 0.025 });
+	if (windowWidth > 800 && windowWidth < 1200) {
+		$('.sub-font-scale').css({'font-size' : windowWidth * 0.024 });
 	}
-	else	{
-		$('.sub-font-scale').css({'font-size' : windowWidth * 0.03 });
+	else if (windowWidth < 801)	{
+		$('.sub-font-scale').css({'font-size' : windowWidth * 0.035 });
+	}
+	else {
+		$('.sub-font-scale').css({'font-size' : windowWidth * 0.025 });
 	}
 });
 $(function() {
@@ -30,6 +35,12 @@ $(function() {
 
 app.controller('boardController', ['$scope', '$interval', function ($scope, $interval) {
 	$scope.boxrows = [[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]];
+
+	$scope.timer = 0;
+
+	clearBoard = function() {
+		$scope.boxrows = [[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]];
+	};
 
 	$scope.score1 = p1ScoreIds;
 	$scope.score2 = p2ScoreIds;
@@ -40,7 +51,9 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 	console.log($scope.boxrows);
 	console.log(p1ScoreIds.length);
 
+// ------------- cues up game and starts intro animations -------------->
 	$scope.startGame = function() {
+		$scope.roundStart();
 		// bases countdown size on window width		
 		if (windowWidth < 801) {
 			multiplier *= 1.3;
@@ -67,18 +80,24 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 			$('.large-text1').delay(3500).fadeIn(500);
 			$('.large-text1').animate({'font-size' : emScaler + 'em'}, 1000);
 			$('.large-text1').fadeOut(1000);
+			$('.board-cover-center').delay(1000).css({'background-color' : 'rgba(0,100,0,0.5)'});
 			$('.gameStartCountdown3').delay(1600).fadeOut(300);
 			$('.gameStartCountdown2').delay(1600).fadeOut(300);
 			$('.gameStartCountdown1').delay(1600).fadeOut(300);
+			$('.board-cover-center').delay(4000).fadeOut(500);
+			$('.board-cover-bottom').delay(10000).fadeOut(1000);
 			setTimeout($scope.halftimeShow = false, 2000);
-			setTimeout($scope.clock, 6000);
+			setTimeout($scope.clock, 5000);
 		},5000);
 	};
+// ----------------------------------------------------------
 
 	var roundOver = function() {
     var box = $scope.boxrows;
       if ((box[0][5] == "X" || box[0][5] == "O") && (box[0][6] == "X" || box[0][6] == "O") && (box[0][7] == "X" || box[0][7] == "O") && (box[1][5] == "X" || box[1][5] == "O") && (box[1][6] == "X" || box[1][6] == "O") && (box[1][7] == "X" || box[1][7] == "O") && (box[2][5] == "X" || box[2][5] == "O") && (box[2][6] == "X" || box[2][6] == "O") && (box[2][7] == "X" || box[2][7] == "O")) {
       boxesFull = true;
+      setTimeout($scope.timer = 0, 4000);
+      
         // if (gameRound === 1) {
         //   $timeout(gameReset, 5000);
         //   setTimeout(function() {halftimeSummary();}, 2000);
@@ -219,7 +238,8 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 		p1Score = p1ScoreIds.length - 1;
 		p2Score = p2ScoreIds.length - 1;
 	};
-	
+
+
 	function halftimeSummary() {
 		halftimeSummary = Function("");
 		setTimeout(function(){
@@ -234,29 +254,56 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 				leader = 0;
 			}
 			specialFX('half');
+			setTimeout(function(){
+				boxesFull = false;
+				setTimeout($scope.roundStart, 4000);
+			}, 6000);
 		}, 500);
 	}
 
 	// main clock and timer section ---------------------------------------->
 	// sets the initial round clock
-  $scope.timer = 30;
-  var run;
-  var boardPosition = 21.6;
-  // sets function to start the round clock
-  $scope.clock = function() {
-    run = $interval(function() {
-      if ($scope.timer === 0 || boxesFull === true) {
-        halftimeSummary();
-      }
-    // counts until reaches zero
-      else if ($scope.timer > 0) {
-        $scope.timer = $scope.timer - 1;
-        if($scope.timer % 5 === 0 && $scope.timer > 0){
-          shiftBoard();
-        }
-      }
-    }, 1000);
-  };
+	
+	var run;
+	var boardPosition = 21.6;
+	$scope.roundStart = function (){
+		$scope.timer = 30;
+		// sets function to start the round clock
+		$scope.clock = function(){
+			run = $interval(function(){
+				if ($scope.timer === 0 || boxesFull === true) {
+					if (roundCount === 1) {
+						roundCount++;
+						halftimeSummary();
+						$('.board-container').animate({'margin-left' : boardPosition2 + '%'});
+					}
+					else {
+						if ($scope.timer === 0 || boxesFull === true) {
+							gameOverSummary();
+						}
+					}
+
+				}
+		// counts until reaches zero
+				else if ($scope.timer > 0) {
+					$scope.timer = $scope.timer - 1;
+				}
+				// determings shifting board per round
+				if (roundCount === 1){
+					if($scope.timer % 5 === 0 && $scope.timer > 0){
+						shiftBoard();
+						console.log(boardPosition2);
+					}
+				}
+				else {
+					if($scope.timer % 3 === 0 && $scope.timer > 15){
+						shiftBoardLeft();
+					}
+				}
+			}, 1000);
+		};
+	};
+
 // function resets game timer after first round
   var resetClock = function() {
     $scope.timer = 30;
@@ -266,7 +313,12 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
   shiftBoard = function(){
     $('.board-container').animate({'margin-left' : boardPosition + '%'});
     boardPosition -= 8.45;
-    };
+  };
+
+  shiftBoardLeft = function(){
+    boardPosition2 += 8.45;
+    $('.board-container').animate({'margin-left' : boardPosition2 + '%'});
+  };
 }]);
 
 // special fx and animation section --------------------------->
@@ -284,7 +336,7 @@ function specialFX(fx){
 			.css({'font-size' : flexFont});
   $('.fxScreen').animate({'background-color':'rgba(0, 20, 0, .5)'}, 1000);
 	$('.decoration-bar').delay(2000).css({'box-shadow' : '0px 30px 20px 0px rgba(0,0,0,0.8)'});
-			if(leader === 0){
+			if(leader === 1){
 				$('.fxScreen').delay(2000).animate({'background-color' : 'rgba(22, 120, 255, .5)' }, 1000);
 				setTimeout(function(){
 					$('.player1Lead').css({'text-shadow' : '3px 3px 3px rgba(22, 120, 255, 1)'})
@@ -332,16 +384,35 @@ function specialFX(fx){
 			}
 			$('.fxScreen').delay(2000).animate({'background-color' : 'rgba(200, 0, 0, .5)' }, 500);
 			setTimeout(function(){
+				
 				$('.decoration-bar').css({'border' : '2px solid rgba(200, 0, 0, .5)'}, 500);
 				$('.decoration-bar').css({'background-color' : 'rgba(0,0,0,.4)'});
 				$('.player1Lead, .player2Lead, .playersTied').delay(1000).fadeOut(500);
 				$('.fire-bar').delay(1500).fadeIn(1000);
 				$('.wave2Start').delay(1500).fadeIn(1000);
 				$('.wave2Start').css({'font-size' : flexFont });
+				$('.fxScreen').delay(3000).fadeOut(1000);
+				$('#main-timer').animate({"opacity" : '0.01'},1000);
+				$('.test').fadeOut(1000);
+				setTimeout(function(){
+					boxColorChange();
+					clearBoard();
+				}, 2000);
 			}, 2500);
 		});
 	}
-
+	function boxColorChange() {
+		$('.test').css({
+			'border' : '2px solid rgba(255, 0, 0, 1)',
+			'boxShadow' : 'inset -7px 7px 15px 0 rgba(255,0,0,0.55)'
+		});
+		$('#main-timer').css({
+			'border' : '2px solid rgba(255, 0, 0, 1)',
+			'boxShadow' : 'inset -7px 7px 15px 0 rgba(255,0,0,0.55)'
+		});
+		$('.test').fadeIn(1500);
+		$('#main-timer').animate({'opacity' : '1'}, 1500);
+	}
 	function fontScaler() {
 		jQuery( document ).ready(function( $ ) {
 			$('.markers').css({'font-size' : markerSize });
