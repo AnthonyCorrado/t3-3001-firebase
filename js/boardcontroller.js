@@ -19,15 +19,12 @@ $(window).ready(function() {
 	fontScaler();
 	if (windowWidth > 800 && windowWidth < 1200) {
 		$('.sub-font-scale').css({'font-size' : windowWidth * 0.024 });
-		$('.board-cover-center').css({'height' : windowWidth * 0.255 });
 	}
 	else if (windowWidth < 801)	{
 		$('.sub-font-scale').css({'font-size' : windowWidth * 0.035 });
-		$('.board-cover-center').css({'height' : windowWidth * 0.33 });
 	}
 	else {
 		$('.sub-font-scale').css({'font-size' : windowWidth * 0.025 });
-		$('.board-cover-center').css({'height' : windowWidth * 0.24 });
 	}
 });
 $(function() {
@@ -36,6 +33,8 @@ $(function() {
 
 app.controller('boardController', ['$scope', '$interval', function ($scope, $interval) {
 	$scope.boxrows = [[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]];
+
+	$scope.timer = 0;
 
 	clearBoard = function() {
 		$scope.boxrows = [[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]];
@@ -52,6 +51,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 
 // ------------- cues up game and starts intro animations -------------->
 	$scope.startGame = function() {
+		$scope.roundStart();
 		// bases countdown size on window width		
 		if (windowWidth < 801) {
 			multiplier *= 1.3;
@@ -78,13 +78,14 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 			$('.large-text1').delay(3500).fadeIn(500);
 			$('.large-text1').animate({'font-size' : emScaler + 'em'}, 1000);
 			$('.large-text1').fadeOut(1000);
-			$('.board-cover-center').css({'background-color' : 'rgba(0,255,0,0.3)'});
+			$('.board-cover-center').delay(1000).css({'background-color' : 'rgba(0,100,0,0.5)'});
 			$('.gameStartCountdown3').delay(1600).fadeOut(300);
 			$('.gameStartCountdown2').delay(1600).fadeOut(300);
 			$('.gameStartCountdown1').delay(1600).fadeOut(300);
-			$('.board-cover-center').delay(4000).fadeOut(2000);
+			$('.board-cover-center').delay(4000).fadeOut(500);
+			$('.board-cover-bottom').delay(10000).fadeOut(1000);
 			setTimeout($scope.halftimeShow = false, 2000);
-			setTimeout($scope.clock, 6000);
+			setTimeout($scope.clock, 5000);
 		},5000);
 	};
 // ----------------------------------------------------------
@@ -251,7 +252,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 			specialFX('half');
 			setTimeout(function(){
 				boxesFull = false;
-				
+				$.scope.timer = 30;
 				setTimeout($scope.clock, 5000);
 			}, 6000);
 		}, 500);
@@ -259,24 +260,40 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 
 	// main clock and timer section ---------------------------------------->
 	// sets the initial round clock
-  $scope.timer = 30;
-  var run;
-  var boardPosition = 21.6;
-  // sets function to start the round clock
-  $scope.clock = function() {
-    run = $interval(function() {
-      if ($scope.timer === 0 || boxesFull === true) {
-        halftimeSummary();
-      }
-    // counts until reaches zero
-      else if ($scope.timer > 0) {
-        $scope.timer = $scope.timer - 1;
-        if($scope.timer % 5 === 0 && $scope.timer > 0){
-          shiftBoard();
-        }
-      }
-    }, 1000);
-  };
+	var roundCount = 1;
+	var run;
+	var boardPosition = 21.6;
+	$scope.roundStart = function (){
+		$scope.timer = 30;
+		// sets function to start the round clock
+		$scope.clock = function(){
+			run = $interval(function(){
+				if ($scope.timer === 0 || boxesFull === true) {
+					if (roundCount === 1) {
+						halftimeSummary();
+						roundCount++;
+					}
+					else {
+						gameOverSummary();
+					}
+				}
+		// counts until reaches zero
+				else if ($scope.timer > 0) {
+					$scope.timer = $scope.timer - 1;
+				}
+				// determings shifting board per round
+				if (roundCount === 1){
+					if($scope.timer % 5 === 0 && $scope.timer > 0){
+						shiftBoard();
+					}
+				}
+				else {
+					
+				}
+			}, 1000);
+		};
+	};
+
 // function resets game timer after first round
   var resetClock = function() {
     $scope.timer = 30;
@@ -359,20 +376,19 @@ function specialFX(fx){
 				$('.fire-bar').delay(1500).fadeIn(1000);
 				$('.wave2Start').delay(1500).fadeIn(1000);
 				$('.wave2Start').css({'font-size' : flexFont });
-				$('.fxScreen').delay(3500).fadeOut(1000);
-				$('#main-timer').delay(1000).css({"opacity" : '0.1'});
+				$('.fxScreen').delay(3000).fadeOut(1000);
+				$('#main-timer').animate({"opacity" : '0.01'},1000);
 				$('.test').fadeOut(1000);
 				setTimeout(function(){
 					boxColorChange();
 					clearBoard();
-					$scope.timer = 30;
-				}, 3000);
+				}, 2000);
 			}, 2500);
 		});
 	}
 	function boxColorChange() {
 		$('.test').css({
-			'border' : '5px solid rgba(255, 0, 0, 1)',
+			'border' : '2px solid rgba(255, 0, 0, 1)',
 			'boxShadow' : 'inset -7px 7px 15px 0 rgba(255,0,0,0.55)'
 		});
 		$('#main-timer').css({
@@ -380,7 +396,7 @@ function specialFX(fx){
 			'boxShadow' : 'inset -7px 7px 15px 0 rgba(255,0,0,0.55)'
 		});
 		$('.test').fadeIn(1500);
-		$('#main-timer').css({'opacity' : '1'});
+		$('#main-timer').animate({'opacity' : '1'}, 1500);
 	}
 	function fontScaler() {
 		jQuery( document ).ready(function( $ ) {
