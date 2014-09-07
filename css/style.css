@@ -287,9 +287,9 @@ span {
 .board-cover-center {
 	position: absolute;
 	margin-left: 37%;
-	margin-top: 5%;
+	margin-top: 4.9%;
 	width: 25%;
-	height: 60%;
+	height: 55%;
 	background-color: rgba(0, 0, 0, .7);
 	z-index: 2;
 	border-radius: 3px;

@@ -101,6 +101,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
       setTimeout($scope.timer = 0, 4000);
     }
 	};
+
 	$scope.shotclock = 5;
   // sets function to start the round clock
   $scope.countdown = function() {
@@ -279,8 +280,10 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 			$scope.timer = 30;
 		}
 		else {
-			$scope.timer = 35;
-			clockBreak = true;
+			setTimeout(function(){
+        $scope.timer = 35;
+        clockBreak = true;
+			}, 6000);
 		}
 		// sets function to start the round clock
 		$scope.clock = function(){
@@ -337,6 +340,28 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 
 // special fx and animation section --------------------------->
 
+function roundTwoCountdown(){
+	$('.large-text3, .large-text2, .large-text1').css({ 'text-shadow' : '3px 3px 1px rgba(255, 0, 0, .7)'});
+	$('.gameStartCountdown3').delay(1000).fadeIn(500);
+	$('.large-text3').fadeIn(500);
+	$('.large-text3').animate({'font-size' : emScaler + 'em'}, 1000);
+	$('.large-text3').delay(1000).fadeOut(500);
+	$('.gameStartCountdown2').delay(2500).fadeIn(500);
+	$('.large-text2').delay(2500).fadeIn(500);
+	$('.large-text2').animate({'font-size' : emScaler + 'em'}, 1000);
+	$('.large-text2').fadeOut(500);
+	$('.gameStartCountdown1').delay(3800).fadeIn(500);
+	$('.test').animate({'background-color' : 'rgba(200, 0, 0, .5)' }, 1000);
+	$('.large-text1').delay(3800).fadeIn(500);
+	$('.large-text1').animate({'font-size' : emScaler + 'em'}, 1000);
+	$('.large-text1').fadeOut(500);
+	$('.gameStartCountdown3').delay(1600).fadeOut(300);
+	$('.gameStartCountdown2').delay(1600).fadeOut(300);
+	$('.gameStartCountdown1').delay(1600).fadeOut(300);
+	$('.board-cover-center').delay(5600).fadeOut(500);
+	$('.test').animate({'background-color' : 'rgba(0, 0, 0, 0)' }, 500);
+}
+
 function specialFX(fx){
 	fxCall = fx;
 	multiplier = 1.7;
@@ -379,9 +404,10 @@ function specialFX(fx){
 			}
 			setTimeout(function(){
 				secondHalfStart();
-			}, 2000);
+			}, 3000);
 		}
 		else if (fxCall === 'end') {
+			$('.endScreen').css({'font-size' : flexFont });
 			$('.wave2Start').css({'display' : 'none'});
 			$('.fire-bar').css({'display' : 'none'});
 			$('.fxScreen').delay(1000).fadeIn(500);
@@ -410,16 +436,22 @@ function specialFX(fx){
 				$('.fire-bar').delay(1500).fadeIn(1000);
 				$('.wave2Start').delay(1500).fadeIn(1000);
 				$('.wave2Start').css({'font-size' : flexFont });
-				$('.fxScreen').delay(3000).fadeOut(1000);
+				$('.fxScreen').delay(4000).fadeOut(1500);
 				$('#main-timer').animate({"opacity" : '0.01'},1000);
 				$('.test').fadeOut(1000);
 				setTimeout(function(){
 					boxColorChange();
 					clearBoard();
+					$('.board-cover-center').css({'background-color' : 'rgba(0,0,0,0.7)'});
+					$('.board-cover-center').css({'display' : 'block'});
+					setTimeout(function(){
+						roundTwoCountdown();
+					},2500);
 				}, 2000);
 			}, 2500);
 		});
 	}
+	roundTwoCountdown();
 	function boxColorChange() {
 		$('.test').css({
 			'border' : '2px solid rgba(255, 0, 0, 1)',
