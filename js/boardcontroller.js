@@ -15,7 +15,7 @@ var multiplier = 1.7;
 var markerSize = windowWidth * 0.035;
 var emScaler = windowWidth * 0.024;
 var roundCount = 1;
-var boardPosition2 = -12.5;
+var boardPosition2 = -12.2;
 
 $(window).ready(function() {
 	fontScaler();
@@ -40,6 +40,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 
 	clearBoard = function() {
 		$scope.boxrows = [[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]];
+		grid = $scope.boxrows;
 	};
 
 	$scope.score1 = p1ScoreIds;
@@ -216,9 +217,11 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 	var isScoreIndexUnique = function(index) {
 		if (index > 0) {
 			x = p1ScoreIds;
+			console.log(x.length + 'player 1 id')
 		}
 		else if (index < 0) {
 			x = p2ScoreIds;
+			console.log(x.length + 'player 2 id')
 		}
 		duplicate = false;
 		for (i = 0; i < x.length; i++) {
@@ -267,7 +270,12 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 	var run;
 	var boardPosition = 21.6;
 	$scope.roundStart = function (){
-		$scope.timer = 30;
+		if(roundCount === 1){
+			$scope.timer = 30;
+		}
+		else {
+			$scope.timer = 35;
+		}
 		// sets function to start the round clock
 		$scope.clock = function(){
 			run = $interval(function(){
@@ -279,7 +287,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 					}
 					else {
 						if ($scope.timer === 0 || boxesFull === true) {
-							gameOverSummary();
+							// gameOverSummary();
 						}
 					}
 
@@ -292,12 +300,14 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 				if (roundCount === 1){
 					if($scope.timer % 5 === 0 && $scope.timer > 0){
 						shiftBoard();
-						console.log(boardPosition2);
 					}
 				}
 				else {
-					if($scope.timer % 3 === 0 && $scope.timer > 15){
+					if($scope.timer % 3 === 0 && $scope.timer > 15 && $scope.timer < 31){
 						shiftBoardLeft();
+					}
+					else if ($scope.timer % 3 === 0 && $scope.timer < 16 && $scope.timer > 0){
+						shiftBoardRight();
 					}
 				}
 			}, 1000);
@@ -319,6 +329,11 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
     boardPosition2 += 8.45;
     $('.board-container').animate({'margin-left' : boardPosition2 + '%'});
   };
+  shiftBoardRight = function(){
+    boardPosition2 -= 8.45;
+    $('.board-container').animate({'margin-left' : boardPosition2 + '%'});
+  };
+
 }]);
 
 // special fx and animation section --------------------------->
