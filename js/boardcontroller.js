@@ -16,6 +16,7 @@ var markerSize = windowWidth * 0.035;
 var emScaler = windowWidth * 0.024;
 var roundCount = 1;
 var boardPosition2 = -12.2;
+var clockBreak = true;
 
 $(window).ready(function() {
 	fontScaler();
@@ -95,19 +96,10 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 
 	var roundOver = function() {
     var box = $scope.boxrows;
-      if ((box[0][5] == "X" || box[0][5] == "O") && (box[0][6] == "X" || box[0][6] == "O") && (box[0][7] == "X" || box[0][7] == "O") && (box[1][5] == "X" || box[1][5] == "O") && (box[1][6] == "X" || box[1][6] == "O") && (box[1][7] == "X" || box[1][7] == "O") && (box[2][5] == "X" || box[2][5] == "O") && (box[2][6] == "X" || box[2][6] == "O") && (box[2][7] == "X" || box[2][7] == "O")) {
+    if ((box[0][5] == "X" || box[0][5] == "O") && (box[0][6] == "X" || box[0][6] == "O") && (box[0][7] == "X" || box[0][7] == "O") && (box[1][5] == "X" || box[1][5] == "O") && (box[1][6] == "X" || box[1][6] == "O") && (box[1][7] == "X" || box[1][7] == "O") && (box[2][5] == "X" || box[2][5] == "O") && (box[2][6] == "X" || box[2][6] == "O") && (box[2][7] == "X" || box[2][7] == "O")) {
       boxesFull = true;
       setTimeout($scope.timer = 0, 4000);
-      
-        // if (gameRound === 1) {
-        //   $timeout(gameReset, 5000);
-        //   setTimeout(function() {halftimeSummary();}, 2000);
-        //   gameRound += 1;
-        // }
-        // else {
-        //   setTimeout(function() {determineWinner();}, 2000);
-        // }
-      }
+    }
 	};
 	$scope.shotclock = 5;
   // sets function to start the round clock
@@ -217,11 +209,9 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 	var isScoreIndexUnique = function(index) {
 		if (index > 0) {
 			x = p1ScoreIds;
-			console.log(x.length + 'player 1 id')
 		}
 		else if (index < 0) {
 			x = p2ScoreIds;
-			console.log(x.length + 'player 2 id')
 		}
 		duplicate = false;
 		for (i = 0; i < x.length; i++) {
@@ -243,24 +233,39 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 	};
 
 
-	function halftimeSummary() {
-		halftimeSummary = Function("");
+	function summary() {
+		// summary = Function("");
 		setTimeout(function(){
 			$scope.halftimeShow = true;
-			if (p1Score > p2Score) {
-				leader = 1;
-			}
-			else if (p2Score > p1Score) {
-				leader = 2;
+			if (roundCount === 1) {
+				if (p1Score > p2Score) {
+					leader = 1;
+				}
+				else if (p2Score > p1Score) {
+					leader = 2;
+				}
+				else {
+					leader = 0;
+				}
+				specialFX('half');
+				setTimeout(function(){
+					boxesFull = false;
+					roundCount++;
+					setTimeout($scope.roundStart, 4000);
+				}, 6000);
 			}
 			else {
-				leader = 0;
+				if (p1Score > p2Score) {
+					leader = 3;
+				}
+				else if (p2Score > p1Score) {
+					leader = 4;
+				}
+				else {
+					leader = 'tie';
+				}
+				specialFX('end');
 			}
-			specialFX('half');
-			setTimeout(function(){
-				boxesFull = false;
-				setTimeout($scope.roundStart, 4000);
-			}, 6000);
 		}, 500);
 	}
 
@@ -275,22 +280,17 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 		}
 		else {
 			$scope.timer = 35;
+			clockBreak = true;
 		}
 		// sets function to start the round clock
 		$scope.clock = function(){
 			run = $interval(function(){
-				if ($scope.timer === 0 || boxesFull === true) {
+				if (($scope.timer === 0 || boxesFull === true) && clockBreak ) {
+					summary();
+					clockBreak = false;
 					if (roundCount === 1) {
-						roundCount++;
-						halftimeSummary();
 						$('.board-container').animate({'margin-left' : boardPosition2 + '%'});
 					}
-					else {
-						if ($scope.timer === 0 || boxesFull === true) {
-							// gameOverSummary();
-						}
-					}
-
 				}
 		// counts until reaches zero
 				else if ($scope.timer > 0) {
@@ -333,7 +333,6 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
     boardPosition2 -= 8.45;
     $('.board-container').animate({'margin-left' : boardPosition2 + '%'});
   };
-
 }]);
 
 // special fx and animation section --------------------------->
@@ -349,8 +348,8 @@ function specialFX(fx){
 		if (fxCall == 'half') {
 			$('.fx-text').fadeIn(1500)
 			.css({'font-size' : flexFont});
-  $('.fxScreen').animate({'background-color':'rgba(0, 20, 0, .5)'}, 1000);
-	$('.decoration-bar').delay(2000).css({'box-shadow' : '0px 30px 20px 0px rgba(0,0,0,0.8)'});
+      $('.fxScreen').animate({'background-color':'rgba(0, 20, 0, .5)'}, 1000);
+			$('.decoration-bar').delay(2000).css({'box-shadow' : '0px 30px 20px 0px rgba(0,0,0,0.8)'});
 			if(leader === 1){
 				$('.fxScreen').delay(2000).animate({'background-color' : 'rgba(22, 120, 255, .5)' }, 1000);
 				setTimeout(function(){
@@ -383,7 +382,12 @@ function specialFX(fx){
 			}, 2000);
 		}
 		else if (fxCall === 'end') {
-			$('.fxScreen').animate({'background-color' : 'blue' }, 1000);
+			$('.wave2Start').css({'display' : 'none'});
+			$('.fire-bar').css({'display' : 'none'});
+			$('.fxScreen').delay(1000).fadeIn(500);
+			$('.endScreen').fadeIn(500);
+			$('.fxScreen').animate({'background-color' : 'rgba(200, 0, 0, .5)' }, 1000);
+			$('.decoration-bar').fadeIn(1000);
 		}
 	});
 }
