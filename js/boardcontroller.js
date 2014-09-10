@@ -238,16 +238,16 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 		// summary = Function("");
 		setTimeout(function(){
 			$scope.halftimeShow = true;
+			if (p1Score > p2Score) {
+				leader = 1;
+			}
+			else if (p2Score > p1Score) {
+				leader = 2;
+			}
+			else {
+				leader = 0;
+			}
 			if (roundCount === 1) {
-				if (p1Score > p2Score) {
-					leader = 1;
-				}
-				else if (p2Score > p1Score) {
-					leader = 2;
-				}
-				else {
-					leader = 0;
-				}
 				specialFX('half');
 				setTimeout(function(){
 					boxesFull = false;
@@ -256,15 +256,6 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 				}, 6000);
 			}
 			else {
-				if (p1Score > p2Score) {
-					leader = 3;
-				}
-				else if (p2Score > p1Score) {
-					leader = 4;
-				}
-				else {
-					leader = 'tie';
-				}
 				specialFX('end');
 			}
 		}, 500);
@@ -362,31 +353,24 @@ function roundTwoCountdown(){
 	$('.test').animate({'background-color' : 'rgba(0, 0, 0, 0)' }, 500);
 }
 
-function specialFX(fx){
-	fxCall = fx;
-	multiplier = 1.7;
+function playerOneUp() {
 	jQuery( document ).ready(function( $ ) {
-		if (windowWidth < 801) {
-			multiplier *= 1.3;
-		}
-		$('.decoration-bar').css({'height' : flexFont * multiplier});
-		if (fxCall == 'half') {
-			$('.fx-text').fadeIn(1500)
-			.css({'font-size' : flexFont});
-      $('.fxScreen').animate({'background-color':'rgba(0, 20, 0, .5)'}, 1000);
-			$('.decoration-bar').delay(2000).css({'box-shadow' : '0px 30px 20px 0px rgba(0,0,0,0.8)'});
-			if(leader === 1){
-				$('.fxScreen').delay(2000).animate({'background-color' : 'rgba(22, 120, 255, .5)' }, 1000);
+	$('.fxScreen').delay(2000).animate({'background-color' : 'rgba(22, 120, 255, .5)' }, 1000);
 				setTimeout(function(){
 					$('.player1Lead').css({'text-shadow' : '3px 3px 3px rgba(22, 120, 255, 1)'})
 					.css({'font-size' : flexFont});
 					$('.fx-text').fadeOut(690);
-					$('.player1Lead').delay(700).fadeIn(1000);
 					$('.decoration-bar').css({'border' : '2px solid rgba(22, 120, 255, .7)'}, 'fast');
+					if(roundCount === 1){
+						$('.player1Lead').delay(700).fadeIn(1000);
+					}
 				}, 2500);
-			}
-			else if (leader === 2) {
-				$('.fxScreen').delay(2000).animate({'background-color' : 'rgba(111, 50, 177, .5)' }, 1000);
+			});
+}
+
+function playerTwoUp() {
+	jQuery( document ).ready(function( $ ) {
+	$('.fxScreen').delay(2000).animate({'background-color' : 'rgba(111, 50, 177, .5)' }, 1000);
 				setTimeout(function(){
 					$('.player2Lead').css({'text-shadow' : '3px 3px 3px rgba(111, 50, 177, 1)'})
 					.css({'font-size' : flexFont});
@@ -394,19 +378,26 @@ function specialFX(fx){
 					$('.player2Lead').delay(700).fadeIn(1000);
 					$('.decoration-bar').css({'border' : '2px solid rgba(111, 50, 177, .7)'}, 'fast');
 				}, 2500);
-			}
-			else {
-				setTimeout(function(){
-					$('.fx-text').fadeOut(690);
-					$('.playersTied').delay(2200).fadeIn(1000)
-					.css({'font-size' : flexFont });
-				});
-			}
-			setTimeout(function(){
-				secondHalfStart();
-			}, 3000);
+			});
+}
+
+function playersAreTied() {
+	jQuery( document ).ready(function( $ ) {
+		$('.fx-text').fadeOut(690);
+		$('.playersTied').delay(2200).fadeIn(1000)
+		.css({'font-size' : flexFont });
+	});
+}
+
+function endRoundTransition() {
+	jQuery( document ).ready(function( $ ) {
+		if(roundCount === 1) {
+			$('.fx-text').fadeIn(1500)
+			.css({'font-size' : flexFont});
+			$('.fxScreen').animate({'background-color':'rgba(0, 20, 0, .5)'}, 1000);
+			$('.decoration-bar').delay(2000).css({'box-shadow' : '0px 30px 20px 0px rgba(0,0,0,0.8)'});
 		}
-		else if (fxCall === 'end') {
+		else {
 			$('.endScreen').css({'font-size' : flexFont });
 			$('.wave2Start').css({'display' : 'none'});
 			$('.fire-bar').css({'display' : 'none'});
@@ -415,6 +406,32 @@ function specialFX(fx){
 			$('.fxScreen').animate({'background-color' : 'rgba(200, 0, 0, .5)' }, 1000);
 			$('.decoration-bar').fadeIn(1000);
 		}
+	});
+}
+// end of half and end of game screen change effects and text --------->
+function specialFX(fx){
+	fxCall = fx;
+	multiplier = 1.7;
+	jQuery( document ).ready(function( $ ) {
+		if (windowWidth < 801) {
+			multiplier *= 1.3;
+		}
+		$('.decoration-bar').css({'height' : flexFont * multiplier});
+		endRoundTransition();
+			if(leader === 1){
+				playerOneUp();
+			}
+			else if (leader === 2) {
+				playerTwoUp();
+			}
+			else {
+				playersAreTied();
+			}
+			if(roundCount === 1){
+				setTimeout(function(){
+					secondHalfStart();
+				}, 3000);
+			}
 	});
 }
 	// jQuery fx flow functions ------------------------------------------------<
