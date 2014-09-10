@@ -34,6 +34,26 @@ $(window).ready(function() {
 		$('.font-helper').css({'font-size' : emScaler });
 	}
 });
+
+$( window ).resize(function() {
+	windowWidth = $(window).width();
+	emScaler = windowWidth * 0.024;
+		$('.font-helper').css({'font-size' : emScaler * 0.8 });
+	if (windowWidth > 800 && windowWidth < 1200) {
+		$('.sub-font-scale').css({'font-size' : windowWidth * 0.024 });
+	}
+	else if (windowWidth < 801)	{
+		$('.sub-font-scale').css({'font-size' : windowWidth * 0.035 });
+	}
+	else {
+		$('.sub-font-scale').css({'font-size' : windowWidth * 0.025 });
+	}
+	if (windowWidth < 400){
+		$('.font-helper').css({'font-size' : emScaler });
+	}
+
+});
+
 $(function() {
     FastClick.attach(document.body);
 });
