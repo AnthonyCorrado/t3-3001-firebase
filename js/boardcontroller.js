@@ -35,10 +35,13 @@ $(window).ready(function() {
 	}
 });
 
+// resize core elements on device orientation flip or window resize ----->
 $( window ).resize(function() {
 	windowWidth = $(window).width();
 	emScaler = windowWidth * 0.024;
-		$('.font-helper').css({'font-size' : emScaler * 0.8 });
+	markerSize = windowWidth * 0.035;
+	fontScaler();
+	$('.font-helper').css({'font-size' : emScaler * 0.8 });
 	if (windowWidth > 800 && windowWidth < 1200) {
 		$('.sub-font-scale').css({'font-size' : windowWidth * 0.024 });
 	}
@@ -51,8 +54,8 @@ $( window ).resize(function() {
 	if (windowWidth < 400){
 		$('.font-helper').css({'font-size' : emScaler });
 	}
-
 });
+// -------------------------------------------------------------
 
 $(function() {
     FastClick.attach(document.body);
@@ -420,8 +423,17 @@ function playerTwoUp() {
 function playersAreTied() {
 	jQuery( document ).ready(function( $ ) {
 		$('.fx-text').fadeOut(690);
-		$('.playersTied').delay(2200).fadeIn(1000)
-		.css({'font-size' : flexFont });
+		if(roundCount === 1) {
+			$('.playersTied').delay(2200).fadeIn(1000)
+			.css({'font-size' : flexFont });
+		}
+		else {
+			setTimeout(function(){
+				$('.tieGame').fadeIn(1000)
+				.css({'font-size' : flexFont })
+				.css({ 'text-shadow' : '3px 3px 1px rgba(255, 0, 0, .7)'});
+			}, 4000);
+		}
 	});
 }
 // ----------------------------------------------------------------
