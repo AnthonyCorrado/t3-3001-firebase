@@ -352,33 +352,45 @@ function roundTwoCountdown(){
 	$('.board-cover-center').delay(5600).fadeOut(500);
 	$('.test').animate({'background-color' : 'rgba(0, 0, 0, 0)' }, 500);
 }
-
+// game and halftime summary outcomes ----------------------------------->
 function playerOneUp() {
 	jQuery( document ).ready(function( $ ) {
-	$('.fxScreen').delay(2000).animate({'background-color' : 'rgba(22, 120, 255, .5)' }, 1000);
+		$('.fxScreen').delay(2000).animate({'background-color' : 'rgba(22, 120, 255, .5)' }, 1000);
+		setTimeout(function(){
+			$('.player1Lead, .player1Win').css({'text-shadow' : '3px 3px 3px rgba(22, 120, 255, 1)'})
+			.css({'font-size' : flexFont});
+			$('.fx-text').fadeOut(690);
+			$('.decoration-bar').css({'border' : '2px solid rgba(22, 120, 255, .7)'}, 'fast');
+			if(roundCount === 1){
+				$('.player1Lead').delay(700).fadeIn(1000);
+			}
+			else {
 				setTimeout(function(){
-					$('.player1Lead').css({'text-shadow' : '3px 3px 3px rgba(22, 120, 255, 1)'})
-					.css({'font-size' : flexFont});
-					$('.fx-text').fadeOut(690);
-					$('.decoration-bar').css({'border' : '2px solid rgba(22, 120, 255, .7)'}, 'fast');
-					if(roundCount === 1){
-						$('.player1Lead').delay(700).fadeIn(1000);
-					}
-				}, 2500);
-			});
+					$('.player1Win').fadeIn(1000);
+				}, 2000);
+			}
+		}, 2500);
+	});
 }
 
 function playerTwoUp() {
 	jQuery( document ).ready(function( $ ) {
-	$('.fxScreen').delay(2000).animate({'background-color' : 'rgba(111, 50, 177, .5)' }, 1000);
+		$('.fxScreen').delay(2000).animate({'background-color' : 'rgba(111, 50, 177, .5)' }, 1000);
+		setTimeout(function(){
+			$('.player2Lead, .player2Win').css({'text-shadow' : '3px 3px 3px rgba(111, 50, 177, 1)'})
+			.css({'font-size' : flexFont});
+			$('.fx-text').fadeOut(690);
+			$('.decoration-bar').css({'border' : '2px solid rgba(111, 50, 177, .7)'}, 'fast');
+			if(roundCount === 1){
+				$('.player2Lead').delay(700).fadeIn(1000);
+			}
+			else {
 				setTimeout(function(){
-					$('.player2Lead').css({'text-shadow' : '3px 3px 3px rgba(111, 50, 177, 1)'})
-					.css({'font-size' : flexFont});
-					$('.fx-text').fadeOut(690);
-					$('.player2Lead').delay(700).fadeIn(1000);
-					$('.decoration-bar').css({'border' : '2px solid rgba(111, 50, 177, .7)'}, 'fast');
-				}, 2500);
-			});
+					$('.player2Win').fadeIn(1000);
+				}, 2000);
+			}
+		}, 2500);
+	});
 }
 
 function playersAreTied() {
@@ -388,7 +400,7 @@ function playersAreTied() {
 		.css({'font-size' : flexFont });
 	});
 }
-
+// ----------------------------------------------------------------
 function endRoundTransition() {
 	jQuery( document ).ready(function( $ ) {
 		if(roundCount === 1) {
@@ -401,10 +413,11 @@ function endRoundTransition() {
 			$('.endScreen').css({'font-size' : flexFont });
 			$('.wave2Start').css({'display' : 'none'});
 			$('.fire-bar').css({'display' : 'none'});
-			$('.fxScreen').delay(1000).fadeIn(500);
+			$('.fxScreen').fadeIn(500);
 			$('.endScreen').fadeIn(500);
 			$('.fxScreen').animate({'background-color' : 'rgba(200, 0, 0, .5)' }, 1000);
 			$('.decoration-bar').fadeIn(1000);
+			$('.endScreen').delay(2500).fadeOut(1000);
 		}
 	});
 }
