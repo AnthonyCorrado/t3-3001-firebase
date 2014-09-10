@@ -17,6 +17,8 @@ var emScaler = windowWidth * 0.024;
 var roundCount = 1;
 var boardPosition2 = -12.2;
 var clockBreak = true;
+var runShot;
+
 
 $(window).ready(function() {
 	fontScaler();
@@ -128,34 +130,53 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
       setTimeout($scope.timer = 0, 4000);
     }
 	};
+	function shotClockStart() {
+		$interval.cancel(runShot);
+		if(turnNum % 2 === 0){
+      $scope.shotclock1 = 5;
+      $scope.shotclock2 = 0;
+		}
+		else if (turnNum % 2 !== 0){
+      $scope.shotclock1 = 0;
+      $scope.shotclock2 = 5;
+    }
+    // sets function to start the round clock
+    $scope.countdown = function() {
+      runShot = $interval(function() {
+        // counts until reaches zero
+        if ($scope.shotclock1 > 0) {
+          $scope.shotclock1 = $scope.shotclock1 - 1;
+        }
+        else if ($scope.shotclock2 > 0) {
+          $scope.shotclock2 = $scope.shotclock2 - 1;
+        }
+        else if ($scope.shotclock1 === 0){
+					altTurn();
+        }
+        else if ($scope.shotclock2 === 0){
+					altTurn();
+        }
+      }, 1000);
+    };
+    $scope.countdown();
+  }
 
-	$scope.shotclock = 5;
-  // sets function to start the round clock
-  $scope.countdown = function() {
-    run = $interval(function() {
-    // counts until reaches zero
-      if ($scope.shotclock > 0) {
-        $scope.shotclock = $scope.shotclock - 1;
-      }
-    }, 1000);
-  };
-  $scope.countdown();
-  
+
 	altTurn = function () {
 		if (turnNum % 2 === 0) {
 			mark = "O";
-			$scope.countdown();
 		}
 		else {
 			mark = "X";
-			console.log($scope.countdown());
 		}
 		turnNum += 1;
+		shotClockStart();
 		};
 
 	$scope.makeMove = function(r, c) {
 		cell = $scope.boxrows[r][c];
 		if (!cell) {
+			shotClockStart();
       $scope.boxrows[r][c] = mark;
       horizontalScoreCheck(mark);
       verticalScoreCheck(mark);
