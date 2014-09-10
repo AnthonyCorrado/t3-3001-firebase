@@ -14,17 +14,21 @@ body {
 	z-index: 6;
 }
 .startPrompt {
-	margin: 20% 25%;
-	width: 50%;
-	height: 30%;
+	margin: 5% 10%;
+	width: 80%;
 	padding: 1%;
-	background: url(../images/metal-box.png);
+	background: url(../images/metal-box-dark.png);
 	position: absolute;
 	border: 2px solid rgba(0, 255, 0, 1);
 	border-radius: 3px;
 	-webkit-box-shadow:  -7px 7px 15px 0px rgba(0,255,0,0.55);
 	-moz-box-shadow:  -7px 7px 15px 0px rgba(0,255,0,0.55);
 	box-shadow:  -7px 7px 15px 0px rgba(0,255,0,0.55);
+}
+.font-helper {
+	text-shadow: 3px 3px 1px rgba(30, 30, 30, .9);
+	font-size: 1em;
+	line-height: 1;
 }
 .message-text {
 	color: rgba(255, 255, 255, .8);
@@ -421,11 +425,6 @@ span {
 	.large-text3, .large-text2, .large-text1 {
 		font-size: 8em;
 	}
-	.startPrompt {
-		margin-left: 20%;
-		width: 60%;
-		height: 30%;
-	}
 	.message-text {
 		font-size: 2.5em;
 	}
@@ -437,11 +436,6 @@ span {
 @media (min-width: 481px) and (max-width: 840px) {
 	.large-text3, .large-text2, .large-text1 {
 		font-size: 5em;
-	}
-	.startPrompt {
-		margin-left: 20%;
-		width: 60%;
-		height: 25%;
 	}
 	.message-text {
 		font-size: 1.5em;
@@ -455,8 +449,8 @@ span {
 		font-size: 2em;
 	}
 	.startPrompt {
-		margin-left: 10%;
-		width: 80%;
+		margin: 0;
+		width: 100%;
 	}
 	.message-text {
 		font-size: 1em;

@@ -20,6 +20,7 @@ var clockBreak = true;
 
 $(window).ready(function() {
 	fontScaler();
+	$('.font-helper').css({'font-size' : emScaler * 0.8 });
 	if (windowWidth > 800 && windowWidth < 1200) {
 		$('.sub-font-scale').css({'font-size' : windowWidth * 0.024 });
 	}
@@ -28,6 +29,9 @@ $(window).ready(function() {
 	}
 	else {
 		$('.sub-font-scale').css({'font-size' : windowWidth * 0.025 });
+	}
+	if (windowWidth < 400){
+		$('.font-helper').css({'font-size' : emScaler });
 	}
 });
 $(function() {
