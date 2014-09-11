@@ -392,6 +392,30 @@ span {
   overflow: hidden;
 
 }
+.playersTurn1, .playersTurn2 {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	padding-top: 13%;
+	opacity: 1;
+	position: absolute;
+}
+.playersMarker1, .playersMarker2 {
+	font-size: 25em;
+	font-family: 'Audiowide', 'cursive';
+	line-height: 1;
+	color: white;
+}
+.playersMarker1 {
+	color: #000;
+	text-shadow: 10px 10px 40px rgba(22, 120, 255, 1);
+
+}
+.playersMarker2 {
+	color: #000;
+	text-shadow: 10px 10px 40px rgba(111, 50, 177, 1);
+	display: none;
+}
 @media (min-width: 630px) { 
     h6 { font-size: .5em; line-height: .5;  } 
     h3, h4 { line-height: 0.6; }

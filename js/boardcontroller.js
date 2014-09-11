@@ -177,6 +177,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 			mark = "X";
 		}
 		turnNum += 1;
+		nextUpFX();
 		shotClockStart();
 		};
 
@@ -565,6 +566,18 @@ function specialFX(fx){
 	function fontScaler() {
 		jQuery( document ).ready(function( $ ) {
 			$('.markers').css({'font-size' : markerSize });
+		});
+	}
+	function nextUpFX() {
+		jQuery( document ).ready(function( $ ) {
+			if (turnNum % 2 !== 0) {
+				$('.playersMarker1').fadeOut('fast');
+				$('.playersMarker2').fadeIn('fast');
+			}
+			else {
+				$('.playersMarker1').fadeIn('fast');
+				$('.playersMarker2').fadeOut('fast');
+			}
 		});
 	}
 // end of jQuery section. Life gets boring from here --------------------->
