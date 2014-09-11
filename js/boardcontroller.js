@@ -30,9 +30,8 @@ $(window).ready(function() {
 		$('.playersMarker').css({'font-size' : emScaler * 4 });
 	}
 	else if (windowWidth <= 680) {
-		$('.playersMarker').css({'font-size' : emScaler * 3.5 });
+		$('.playersMarker').css({'font-size' : emScaler * 3.3 });
 	}
-	$('.playersMarker').css({'font-size' : emScaler * 4 });
 	$('.custom-button').css({'font-size' : emScaler * 1.2 });
 	if (windowWidth > 800 && windowWidth < 1200) {
 		$('.sub-font-scale').css({'font-size' : windowWidth * 0.024 });
@@ -593,20 +592,20 @@ function specialFX(fx){
 		jQuery( document ).ready(function( $ ) {
 			if (turnNum % 2 !== 0) {
 				if(windowWidth > 1024) {
-					$('.playersMarker').css({'text-shadow' : '6px 6px 8px rgba(111, 50, 177, 1)'});
+					$('.playersMarker').css({'text-shadow' : '7px 7px 9px rgba(111, 50, 177, 1)'});
 				}
 				else {
-					$('.playersMarker').css({'text-shadow' : '3px 3px 4px rgba(111, 50, 177, 1)'});
+					$('.playersMarker').css({'text-shadow' : '3px 3px 6px rgba(111, 50, 177, 1)'});
 				}
 				$('.playersTurn2').fadeIn('fast');
 				$('.playersTurn1').css({'display' : 'none'});
 			}
 			else {
 				if(windowWidth > 1024) {
-					$('.playersMarker').css({'text-shadow' : '6px 6px 8px rgba(22, 120, 255, 1)'});
+					$('.playersMarker').css({'text-shadow' : '7px 7px 9px rgba(22, 120, 255, 1)'});
 				}
 				else {
-					$('.playersMarker').css({'text-shadow' : '3px 3px 4px rgba(22, 120, 255, 1)'});
+					$('.playersMarker').css({'text-shadow' : '3px 3px 6px rgba(22, 120, 255, 1)'});
 				}
 				$('.playersTurn2').css({'display' : 'none'});
 				$('.playersTurn1').fadeIn('fast');
