@@ -597,7 +597,7 @@ function specialFX(fx){
 				else {
 					$('.playersMarker').css({'text-shadow' : '3px 3px 6px rgba(111, 50, 177, 1)'});
 				}
-				$('.playersTurn2').fadeIn('fast');
+				$('.playersTurn2').fadeIn(350);
 				$('.playersTurn1').css({'display' : 'none'});
 			}
 			else {
@@ -608,7 +608,7 @@ function specialFX(fx){
 					$('.playersMarker').css({'text-shadow' : '3px 3px 6px rgba(22, 120, 255, 1)'});
 				}
 				$('.playersTurn2').css({'display' : 'none'});
-				$('.playersTurn1').fadeIn('fast');
+				$('.playersTurn1').fadeIn(350);
 			}
 		});
 	}
