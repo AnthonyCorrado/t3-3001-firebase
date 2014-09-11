@@ -23,8 +23,9 @@ var stopShotClock = false;
 
 $(window).ready(function() {
 	fontScaler();
-	$('.font-helper').css({'font-size' : emScaler * 0.8 });
+	$('.font-helper').css({'font-size' : emScaler * 0.7 });
 	$('.playersMarker').css({'font-size' : emScaler * 4 });
+	$('.custom-button').css({'font-size' : emScaler * 1.2 });
 	if (windowWidth > 800 && windowWidth < 1200) {
 		$('.sub-font-scale').css({'font-size' : windowWidth * 0.024 });
 	}
@@ -45,7 +46,8 @@ $( window ).resize(function() {
 	emScaler = windowWidth * 0.024;
 	markerSize = windowWidth * 0.035;
 	fontScaler();
-	$('.font-helper').css({'font-size' : emScaler * 0.8 });
+	$('.font-helper').css({'font-size' : emScaler * 0.75 });
+	$('.custom-button').css({'font-size' : emScaler * 1.2 });
 	if (windowWidth > 800 && windowWidth < 1200) {
 		$('.sub-font-scale').css({'font-size' : windowWidth * 0.024 });
 	}
