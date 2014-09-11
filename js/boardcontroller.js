@@ -18,6 +18,7 @@ var roundCount = 1;
 var boardPosition2 = -12.2;
 var clockBreak = true;
 var runShot;
+var stopShotClock = false;
 
 
 $(window).ready(function() {
@@ -85,6 +86,8 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 // ------------- cues up game and starts intro animations -------------->
 	$scope.startGame = function() {
 		$scope.roundStart();
+		$scope.shotclock1 = 0;
+    $scope.shotclock2 = 0;
 		// bases countdown size on window width		
 		if (windowWidth < 801) {
 			multiplier *= 1.3;
@@ -130,36 +133,40 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
       setTimeout($scope.timer = 0, 4000);
     }
 	};
+	// alternating player shot clocks ---------------------------------->
 	function shotClockStart() {
-		$interval.cancel(runShot);
-		if(turnNum % 2 === 0){
-      $scope.shotclock1 = 5;
-      $scope.shotclock2 = 0;
+		console.log('yo dog dis gon work!');
+		if (stopShotClock === false) {
+			$interval.cancel(runShot);
+			if(turnNum % 2 === 0){
+				$scope.shotclock1 = 5;
+				$scope.shotclock2 = 0;
+			}
+			else if (turnNum % 2 !== 0){
+				$scope.shotclock1 = 0;
+				$scope.shotclock2 = 5;
+			}
+			// sets function to start the round clock
+			$scope.countdown = function() {
+				runShot = $interval(function() {
+					// counts until reaches zero
+					if ($scope.shotclock1 > 0) {
+						$scope.shotclock1 = $scope.shotclock1 - 1;
+					}
+					else if ($scope.shotclock2 > 0) {
+						$scope.shotclock2 = $scope.shotclock2 - 1;
+					}
+					else if ($scope.shotclock1 === 0){
+						altTurn();
+					}
+					else if ($scope.shotclock2 === 0){
+						altTurn();
+					}
+				}, 1000);
+			};
+			$scope.countdown();
 		}
-		else if (turnNum % 2 !== 0){
-      $scope.shotclock1 = 0;
-      $scope.shotclock2 = 5;
-    }
-    // sets function to start the round clock
-    $scope.countdown = function() {
-      runShot = $interval(function() {
-        // counts until reaches zero
-        if ($scope.shotclock1 > 0) {
-          $scope.shotclock1 = $scope.shotclock1 - 1;
-        }
-        else if ($scope.shotclock2 > 0) {
-          $scope.shotclock2 = $scope.shotclock2 - 1;
-        }
-        else if ($scope.shotclock1 === 0){
-					altTurn();
-        }
-        else if ($scope.shotclock2 === 0){
-					altTurn();
-        }
-      }, 1000);
-    };
-    $scope.countdown();
-  }
+	}
 
 
 	altTurn = function () {
@@ -272,8 +279,6 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 		if (!duplicate) {
 			x.push(index);
 			scoreTally();
-			console.log(p1ScoreIds + 'p1 unique');
-			console.log(p2ScoreIds + 'p2 unique');
 		}
 	};
 	var scoreTally = function() {
@@ -286,6 +291,9 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 		// summary = Function("");
 		setTimeout(function(){
 			$scope.halftimeShow = true;
+			$scope.shotclock1 = 0;
+      $scope.shotclock2 = 0;
+			stopShotClock = true;
 			if (p1Score > p2Score) {
 				leader = 1;
 			}
@@ -322,10 +330,13 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 			setTimeout(function(){
         $scope.timer = 35;
         clockBreak = true;
+        stopShotClock = false;
+        shotClockStart();
 			}, 6000);
 		}
 		// sets function to start the round clock
 		$scope.clock = function(){
+			shotClockStart();
 			run = $interval(function(){
 				if (($scope.timer === 0 || boxesFull === true) && clockBreak ) {
 					summary();
