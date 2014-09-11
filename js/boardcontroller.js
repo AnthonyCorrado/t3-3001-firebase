@@ -25,8 +25,13 @@ var stopShotClock = false;
 
 $(window).ready(function() {
 	fontScaler();
-	alert(windowRatio);
 	$('.font-helper').css({'font-size' : emScaler * 0.7 });
+	if (windowWidth > 680) {
+		$('.playersMarker').css({'font-size' : emScaler * 4 });
+	}
+	else if (windowWidth <= 680) {
+		$('.playersMarker').css({'font-size' : emScaler * 3.5 });
+	}
 	$('.playersMarker').css({'font-size' : emScaler * 4 });
 	$('.custom-button').css({'font-size' : emScaler * 1.2 });
 	if (windowWidth > 800 && windowWidth < 1200) {
@@ -41,7 +46,7 @@ $(window).ready(function() {
 	if (windowWidth < 400){
 		$('.font-helper').css({'font-size' : emScaler });
 	}
-	if (windowRatio > 1.4){
+	if (windowRatio > 1.4 && windowWidth <= 680){
 		$('.board-container').css({'margin-top' : '2.5%'});
 	}
 });
@@ -576,7 +581,7 @@ function specialFX(fx){
 	}
 	function fontScaler() {
 		jQuery( document ).ready(function( $ ) {
-			if(windowRatio > 1.4) {
+			if(windowRatio > 1.4 && windowWidth <= 680) {
 				$('.markers').css({'font-size' : markerSize * 0.7 });
 			}
 			else {
