@@ -24,6 +24,7 @@ var stopShotClock = false;
 $(window).ready(function() {
 	fontScaler();
 	$('.font-helper').css({'font-size' : emScaler * 0.8 });
+	$('.playersMarker').css({'font-size' : emScaler * 4 });
 	if (windowWidth > 800 && windowWidth < 1200) {
 		$('.sub-font-scale').css({'font-size' : windowWidth * 0.024 });
 	}
@@ -68,7 +69,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 	$scope.boxrows = [[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]];
 
 	$scope.timer = 0;
-
+	$scope.markerFX = 'X';
 	clearBoard = function() {
 		$scope.boxrows = [[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]];
 		grid = $scope.boxrows;
@@ -172,9 +173,11 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 	altTurn = function () {
 		if (turnNum % 2 === 0) {
 			mark = "O";
+			$scope.markerFX = 'O';
 		}
 		else {
 			mark = "X";
+			$scope.markerFX = 'X';
 		}
 		turnNum += 1;
 		nextUpFX();
@@ -571,12 +574,14 @@ function specialFX(fx){
 	function nextUpFX() {
 		jQuery( document ).ready(function( $ ) {
 			if (turnNum % 2 !== 0) {
-				$('.playersMarker1').fadeOut('fast');
-				$('.playersMarker2').fadeIn('fast');
+				$('.playersMarker').css({'text-shadow' : '6px 6px 20px rgba(111, 50, 177, 1)'});
+				$('.playersTurn2').fadeIn('fast');
+				$('.playersTurn1').css({'display' : 'none'});
 			}
 			else {
-				$('.playersMarker1').fadeIn('fast');
-				$('.playersMarker2').fadeOut('fast');
+				$('.playersMarker').css({'text-shadow' : '6px 6px 20px rgba(22, 120, 255, 1)'});
+				$('.playersTurn2').css({'display' : 'none'});
+				$('.playersTurn1').fadeIn('fast');
 			}
 		});
 	}
