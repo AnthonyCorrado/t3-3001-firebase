@@ -581,7 +581,7 @@ function specialFX(fx){
 	}
 	function fontScaler() {
 		jQuery( document ).ready(function( $ ) {
-			if(windowRatio > 1.4 && windowWidth <= 680) {
+			if(windowRatio > 1.4 && windowWidth < 680) {
 				$('.markers').css({'font-size' : markerSize * 0.7 });
 			}
 			else {
@@ -592,12 +592,22 @@ function specialFX(fx){
 	function nextUpFX() {
 		jQuery( document ).ready(function( $ ) {
 			if (turnNum % 2 !== 0) {
-				$('.playersMarker').css({'text-shadow' : '6px 6px 20px rgba(111, 50, 177, 1)'});
+				if(windowWidth > 1024) {
+					$('.playersMarker').css({'text-shadow' : '6px 6px 8px rgba(111, 50, 177, 1)'});
+				}
+				else {
+					$('.playersMarker').css({'text-shadow' : '3px 3px 4px rgba(111, 50, 177, 1)'});
+				}
 				$('.playersTurn2').fadeIn('fast');
 				$('.playersTurn1').css({'display' : 'none'});
 			}
 			else {
-				$('.playersMarker').css({'text-shadow' : '6px 6px 20px rgba(22, 120, 255, 1)'});
+				if(windowWidth > 1024) {
+					$('.playersMarker').css({'text-shadow' : '6px 6px 8px rgba(22, 120, 255, 1)'});
+				}
+				else {
+					$('.playersMarker').css({'text-shadow' : '3px 3px 4px rgba(22, 120, 255, 1)'});
+				}
 				$('.playersTurn2').css({'display' : 'none'});
 				$('.playersTurn1').fadeIn('fast');
 			}
