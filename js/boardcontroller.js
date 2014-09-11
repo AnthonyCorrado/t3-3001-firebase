@@ -1,4 +1,6 @@
 var windowWidth = $(window).width();
+var windowHeight = $(window).height();
+var windowRatio = (windowWidth / windowHeight);
 $.noConflict();
 var mark = "X";
 var turnNum = 0;
@@ -23,6 +25,7 @@ var stopShotClock = false;
 
 $(window).ready(function() {
 	fontScaler();
+	alert(windowRatio);
 	$('.font-helper').css({'font-size' : emScaler * 0.7 });
 	$('.playersMarker').css({'font-size' : emScaler * 4 });
 	$('.custom-button').css({'font-size' : emScaler * 1.2 });
@@ -37,6 +40,9 @@ $(window).ready(function() {
 	}
 	if (windowWidth < 400){
 		$('.font-helper').css({'font-size' : emScaler });
+	}
+	if (windowRatio > 1.4){
+		$('.board-container').css({'margin-top' : '2.5%'});
 	}
 });
 
@@ -570,7 +576,12 @@ function specialFX(fx){
 	}
 	function fontScaler() {
 		jQuery( document ).ready(function( $ ) {
-			$('.markers').css({'font-size' : markerSize });
+			if(windowRatio > 1.4) {
+				$('.markers').css({'font-size' : markerSize * 0.7 });
+			}
+			else {
+				$('.markers').css({'font-size' : markerSize });
+			}
 		});
 	}
 	function nextUpFX() {
