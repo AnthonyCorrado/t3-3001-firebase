@@ -26,6 +26,7 @@ var stopShotClock = false;
 $(window).ready(function() {
 	fontScaler();
 	$('.font-helper').css({'font-size' : emScaler * 0.7 });
+	$('.player1Scored, .player2Scored').css({'font-size' : emScaler * 0.55 });
 	if (windowWidth > 680) {
 		$('.playersMarker').css({'font-size' : emScaler * 4 });
 	}
@@ -127,7 +128,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 			$('.large-text1').delay(3500).fadeIn(500);
 			$('.large-text1').animate({'font-size' : emScaler + 'em'}, 1000);
 			$('.large-text1').fadeOut(1000);
-			$('.board-cover-center').delay(1000).css({'background-color' : 'rgba(0,100,0,0.5)'});
+			$('.board-cover-center').delay(1000).css({'background-color' : 'rgba(0,0,0,0.7)'});
 			$('.gameStartCountdown3').delay(1600).fadeOut(300);
 			$('.gameStartCountdown2').delay(1600).fadeOut(300);
 			$('.gameStartCountdown1').delay(1600).fadeOut(300);
@@ -148,7 +149,6 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 	};
 	// alternating player shot clocks ---------------------------------->
 	function shotClockStart() {
-		console.log('yo dog dis gon work!');
 		if (stopShotClock === false) {
 			$interval.cancel(runShot);
 			if(turnNum % 2 === 0){
@@ -211,7 +211,15 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 	};
 
 	var horizontalScoreCheck = function(mark) {
-		var r = 0; var c = 0; var p1Index = 100; var p2Index = -100;
+		var r = 0; var c = 0;
+		if(roundCount === 1) {
+			p1Index = 100;
+			p2Index = -100;
+		}
+		else {
+			p1Index = 1100;
+			p2Index = -1100;
+		}
 		var marks = mark + mark + mark;
 		for (r; r < 3; r++) {
 			for (c = 0; c < 6; c++) {
@@ -226,12 +234,18 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 				p1Index++; p2Index--;
 			}
 		}
-		console.log(p2ScoreIds + 'p2');
-		console.log(p1ScoreIds + 'p1');
 	};
 
 	var verticalScoreCheck = function(mark) {
-		var r = 0; var c = 0; var p1Index = 200; var p2Index = -200;
+		var r = 0; var c = 0;
+		if (roundCount === 1) {
+			p1Index = 200;
+			p2Index = -200;
+		}
+		else {
+			p1Index = 1200;
+			p2Index = -1200;
+		}
 		var marks = mark + mark + mark;
 		for (c; c < 8; c++) {
 			if (grid[r][c] + grid[r+1][c] + grid[r+2][c] == marks) {
@@ -244,12 +258,18 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 			}
 			p1Index++; p2Index--;
 		}
-		console.log(p2ScoreIds + 'p2');
-		console.log(p1ScoreIds + 'p1');
 	};
 
 	var diagonalScoreCheck = function(mark) {
-		var r = 0; var c = 0; var p1Index = 300; var p2Index = -300;
+		var r = 0; var c = 0;
+		if (roundCount === 1) {
+			p1Index = 300;
+			p2Index = -300;
+		}
+		else {
+			p1Index = 1300;
+			p2Index = -1300;
+		}
 		var marks = mark + mark + mark;
 		for (c; c < 6; c++) {
 			if (grid[r][c] + grid[r+1][c+1] + grid[r+2][c+2] == marks) {
@@ -262,7 +282,12 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 			}
 			p1Index++; p2Index--;
 		}
-		p1Index = 350; p2Index = -350;
+		if (roundCount === 1) {
+      p1Index = 350; p2Index = -350;
+		}
+		else {
+			p1Index = 1350; p2Index = -1350;
+		}
 		for (c = 0; c < 6; c++) {
 			if (grid[r+2][c] + grid[r+1][c+1] + grid[r][c+2] == marks) {
 				if (marks == "XXX") {
@@ -274,16 +299,16 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 			}
 			p1Index++; p2Index--;
 		}
-		console.log(p2ScoreIds + 'p2');
-		console.log(p1ScoreIds + 'p1');
 	};
 
 	var isScoreIndexUnique = function(index) {
 		if (index > 0) {
 			x = p1ScoreIds;
+			y = 1;
 		}
 		else if (index < 0) {
 			x = p2ScoreIds;
+			y = 2;
 		}
 		duplicate = false;
 		for (i = 0; i < x.length; i++) {
@@ -293,6 +318,12 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 			}
 		}
 		if (!duplicate) {
+			if (y === 1){
+				playerOneScoreFX();
+			}
+			else {
+				playerTwoScoreFX();
+			}
 			x.push(index);
 			scoreTally();
 		}
@@ -348,6 +379,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
         clockBreak = true;
         stopShotClock = false;
         shotClockStart();
+        showUpNext();
 			}, 6000);
 		}
 		// sets function to start the round clock
@@ -355,6 +387,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 			shotClockStart();
 			run = $interval(function(){
 				if (($scope.timer === 0 || boxesFull === true) && clockBreak ) {
+					hideUpNext();
 					summary();
 					clockBreak = false;
 					if (roundCount === 1) {
@@ -592,7 +625,7 @@ function specialFX(fx){
 		jQuery( document ).ready(function( $ ) {
 			if (turnNum % 2 !== 0) {
 				if(windowWidth > 1024) {
-					$('.playersMarker').css({'text-shadow' : '7px 7px 9px rgba(111, 50, 177, 1)'});
+					$('.playersMarker').css({'text-shadow' : '5px 5px 8px rgba(111, 50, 177, 1)'});
 				}
 				else {
 					$('.playersMarker').css({'text-shadow' : '3px 3px 6px rgba(111, 50, 177, 1)'});
@@ -602,7 +635,7 @@ function specialFX(fx){
 			}
 			else {
 				if(windowWidth > 1024) {
-					$('.playersMarker').css({'text-shadow' : '7px 7px 9px rgba(22, 120, 255, 1)'});
+					$('.playersMarker').css({'text-shadow' : '5px 5px 8px rgba(22, 120, 255, 1)'});
 				}
 				else {
 					$('.playersMarker').css({'text-shadow' : '3px 3px 6px rgba(22, 120, 255, 1)'});
@@ -612,6 +645,79 @@ function specialFX(fx){
 			}
 		});
 	}
+	function hideUpNext() {
+		jQuery( document ).ready(function( $ ) {
+			$('.playersTurn1, .playersTurn2').css({'opacity' : '0'});
+		});
+	}
+	function showUpNext() {
+		jQuery( document ).ready(function( $ ) {
+			$('.playersTurn1, .playersTurn2').css({'opacity' : '1'});
+		});
+	}
+
+	function playerOneScoreFX() {
+		jQuery( document ).ready(function( $ ) {
+			$('.player1Scored').css({'margin-top' : '10%'});
+			$('.player1Scored').fadeIn('fast');
+			blink();
+			$('#p1-scorebox').css({'background-color' : 'rgba(22, 120, 255, 1)'});
+			$('.test').css({'background-color' : 'rgba(22, 120, 255, 0.7)'});
+			//return to default state
+			setTimeout(function(){
+				$('.player1Scored').animate({'margin-top' : '1.5%'}, 1500, 'easeOutCirc');
+				$('.player1Scored').fadeOut(200);
+				$('#p1-scorebox').animate({'background-color' : '#000'}, 100);
+				$('.test').css({'background-color' : '#000'}, 100);
+			},100);
+		});
+	}
+	function playerTwoScoreFX() {
+		jQuery( document ).ready(function( $ ) {
+			$('.player2Scored').css({'margin-top' : '10%'});
+			$('.player2Scored').fadeIn('fast');
+			blink();
+			$('#p2-scorebox').animate({'background-color' : 'rgba(111, 50, 177, 1)'}, 100);
+			$('.test').css({'background-color' : 'rgba(111, 50, 177, 0.7)'});
+			//return to default state
+			setTimeout(function(){
+				$('.player2Scored').animate({'margin-top' : '1.5%'}, 1500, 'easeOutCirc');
+				$('.player2Scored').fadeOut(200);
+				$('#p2-scorebox').animate({'background-color' : '#000'}, 100);
+				$('.test').css({'background-color' : '#000'}, 100);
+			}, 100);
+		});
+	}
+
+function blink() {
+	var blinkAmount1 = 0;
+	var blinkAmount2 = 0;
+
+	function blinker() {
+    jQuery( document ).ready(function( $ ) {
+      if (turnNum % 2 !== 0) {
+        if (blinkAmount1 < 4) {
+          // $('.p1ScoreText').delay(250).animate({'font-size' : emScaler * 0.9 }, 1500, 'linear');
+					$('.player1Scored').css({'opacity' : '0'});
+					setTimeout(function(){
+						$('.player1Scored').css({'opacity' : '1'});
+					},100);
+				}
+				blinkAmount1++;
+				blinkAmount2++;
+      }
+      else {
+				if (blinkAmount2 < 4) {
+					$('.player2Scored').css({'opacity' : '0'});
+					setTimeout(function(){
+						$('.player2Scored').css({'opacity' : '1'});
+					},100);
+				}
+      }
+		});
+	}
+	setInterval(blinker, 200);
+}
 // end of jQuery section. Life gets boring from here --------------------->
 
 
