@@ -663,13 +663,21 @@ function specialFX(fx){
 			blink();
 			$('#p1-scorebox').css({'background-color' : 'rgba(22, 120, 255, 1)'});
 			$('.test').css({'background-color' : 'rgba(22, 120, 255, 0.7)'});
+			if (windowWidth < 760) {
+				$('.board-cover-left').animate({'background-color' : 'rgba(22, 120, 255, 0.7)'});
+				$('.board-cover-right').animate({'background-color' : 'rgba(22, 120, 255, 0.7)'});
+				$('body').animate({'background-color' : 'rgba(22, 120, 255, 0.7)'});
+			}
 			//return to default state
 			setTimeout(function(){
 				$('.player1Scored').animate({'margin-top' : '1.5%'}, 1500, 'easeOutCirc');
 				$('.player1Scored').fadeOut(200);
 				$('#p1-scorebox').animate({'background-color' : '#000'}, 100);
 				$('.test').css({'background-color' : '#000'}, 100);
-			},100);
+				$('.board-cover-left').animate({'background-color' : 'rgba(0, 0, 0, 0.7)'});
+				$('.board-cover-right').animate({'background-color' : 'rgba(0, 0, 0, 0.7)'});
+				$('body').animate({'background-color' : '#000'});
+			},200);
 		});
 	}
 	function playerTwoScoreFX() {
@@ -679,13 +687,21 @@ function specialFX(fx){
 			blink();
 			$('#p2-scorebox').animate({'background-color' : 'rgba(111, 50, 177, 1)'}, 100);
 			$('.test').css({'background-color' : 'rgba(111, 50, 177, 0.7)'});
+			if (windowWidth < 760) {
+				$('.board-cover-left').animate({'background-color' : 'rgba(111, 50, 177, 0.7)'});
+				$('.board-cover-right').animate({'background-color' : 'rgba(111, 50, 177, 0.7)'});
+				$('body').animate({'background-color' : 'rgba(111, 50, 177, 0.7)'});
+			}
 			//return to default state
 			setTimeout(function(){
 				$('.player2Scored').animate({'margin-top' : '1.5%'}, 1500, 'easeOutCirc');
 				$('.player2Scored').fadeOut(200);
 				$('#p2-scorebox').animate({'background-color' : '#000'}, 100);
 				$('.test').css({'background-color' : '#000'}, 100);
-			}, 100);
+				$('.board-cover-left').animate({'background-color' : 'rgba(0, 0, 0, 0.7)'});
+				$('.board-cover-right').animate({'background-color' : 'rgba(0, 0, 0, 0.7)'});
+				$('body').animate({'background-color' : '#000'});
+			}, 200);
 		});
 	}
 
@@ -696,12 +712,12 @@ function blink() {
 	function blinker() {
     jQuery( document ).ready(function( $ ) {
       if (turnNum % 2 !== 0) {
-        if (blinkAmount1 < 4) {
+        if (blinkAmount1 < 2) {
           // $('.p1ScoreText').delay(250).animate({'font-size' : emScaler * 0.9 }, 1500, 'linear');
 					$('.player1Scored').css({'opacity' : '0'});
 					setTimeout(function(){
 						$('.player1Scored').css({'opacity' : '1'});
-					},100);
+					},200);
 				}
 				blinkAmount1++;
 				blinkAmount2++;
@@ -711,12 +727,12 @@ function blink() {
 					$('.player2Scored').css({'opacity' : '0'});
 					setTimeout(function(){
 						$('.player2Scored').css({'opacity' : '1'});
-					},100);
+					},200);
 				}
       }
 		});
 	}
-	setInterval(blinker, 200);
+	setInterval(blinker, 400);
 }
 // end of jQuery section. Life gets boring from here --------------------->
 
