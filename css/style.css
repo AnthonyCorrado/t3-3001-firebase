@@ -12,7 +12,7 @@ body {
 	position: absolute;
 	background-color: rgba(0,0,0,.6);
 	z-index: 6;
-	display: none;
+	/*display: none;*/
 }
 .startPrompt {
 	margin: 0 5%;
@@ -504,14 +504,33 @@ span {
 		width: 100%;
 	}
 	#main-timer {
-		height: 45px;
-	}
-}
-@media (max-width: 360px) {
-	#main-timer {
-		height: 27px;
+		height: 35px;
 		border-radius: 4px;
 		border: 1px solid rgba(0, 255, 0, .8);
+	}
+	#p1-scorebox, #p2-scorebox {
+		width: 14%;
+		border-radius: 5px;
+	}
+	#p1-score-name, #p2-score-name {
+		height: 14px;
+	}
+	#p1-timer, #p2-timer {
+		margin-top: -5px;
+	}
+	#p1-score, #p2-score {
+		margin: -4% 0;
+	}
+}
+@media (max-width: 400px) {
+	#main-timer {
+		height: 27px;
+	}
+}
+
+@media (max-width: 360px) {
+	#main-timer {
+		height: 23px;
 	}
 	#p1-scorebox, #p2-scorebox {
 		width: 15%;
