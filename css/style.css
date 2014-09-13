@@ -12,7 +12,7 @@ body {
 	position: absolute;
 	background-color: rgba(0,0,0,.6);
 	z-index: 6;
-	/*display: none;*/
+/*	display: none;*/
 }
 .startPrompt {
 	margin: 0 5%;
@@ -42,8 +42,8 @@ body {
 	margin: 0 auto;
 	margin-top: -2%;
 	color: #FFF;
-	border: 5px outset lime;
-	border-radius: 5px;
+	border: 2px outset lime;
+	border-radius: 3px;
 	background-color: rgba(0,0,0,.7);
 	text-align: center;
 	font-size: 2.5em;
@@ -164,7 +164,7 @@ span {
 }
 .scoreboard {
 	width: 100%;
-	padding-bottom: 11%;
+	padding-bottom: 5%;
 }
 .top-scoreboard {
 	width: 100%;
@@ -176,7 +176,7 @@ span {
 #main-timer {
 	margin: 0 auto;
 	margin-top: 1%;
-	width: 34%;
+	width: 30%;
 	border: 2px solid rgba(0, 255, 0, 1);
 	border-radius: 10px;
 	-webkit-box-shadow: inset -7px 7px 15px 0px rgba(0,255,0,0.55);
@@ -209,6 +209,7 @@ span {
 }
 .timer-font-scale {
 	font-size: 1em;
+	margin-top: 0;
 }
 .white {
 	color: rgba(255, 255, 255, 0.7);
@@ -501,12 +502,15 @@ span {
 		border-radius: 2px;
 		border: 2px solid rgba(0, 255, 0, .8);
 	}
+	.test:hover {
+		border: 2px solid rgba(255, 0, 0, .8);
+	}
 	.startPrompt {
 		margin: 0;
 		width: 100%;
 	}
 	#main-timer {
-		height: 35px;
+		height: 36px;
 		border-radius: 4px;
 		border: 1px solid rgba(0, 255, 0, .8);
 	}
@@ -518,15 +522,25 @@ span {
 		height: 14px;
 	}
 	#p1-timer, #p2-timer {
-		margin-top: -5px;
 	}
 	#p1-score, #p2-score {
 		margin: -4% 0;
 	}
 }
+@media (max-width: 480px) {
+	#main-timer {
+		height: 29px;
+	}
+	#p1-timer, #p2-timer {
+		margin-top: 2px;
+	}
+}
 @media (max-width: 400px) {
 	#main-timer {
 		height: 27px;
+	}
+	#p1-timer, #p2-timer {
+		margin-top: 2px;
 	}
 }
 

@@ -599,6 +599,7 @@ function specialFX(fx){
 		});
 		$('.test').fadeIn(1500);
 		$('#main-timer').animate({'opacity' : '1'}, 1500);
+		$('.white').css({'background-color' : 'rgba(255, 0, 0, 0.3)'});
 	}
 	function fontScaler() {
 		jQuery( document ).ready(function( $ ) {
@@ -623,6 +624,11 @@ function specialFX(fx){
 			$('.custom-button').css({'font-size' : emScaler * 1 });
 			if (windowWidth > 800 && windowWidth < 1200) {
 				$('.sub-font-scale').css({'font-size' : windowWidth * 0.024 });
+				$('#title-text').css({'font-size' : emScaler });
+				$('.timer-font-scale').css({'font-size' : windowWidth * 0.0275 });
+				$('.timer-text').css({'font-size' : windowWidth * 0.02 });
+				$('.white').css({'font-size' : windowWidth * 0.012 });
+				$('.scaling-font').css({'font-size' : windowWidth * 0.015 });
 			}
 			// use these for the master font scaling methond ----------------->
 			else if (windowWidth < 801)	{
@@ -632,14 +638,6 @@ function specialFX(fx){
 				$('.timer-text').css({'font-size' : windowWidth * 0.02 });
 				$('.scaling-font').css({'font-size' : windowWidth * 0.018 });
 				$('.white').css({'font-size' : windowWidth * 0.015 });
-			}
-			else {
-				$('#title-text').css({'font-size' : emScaler });
-				$('.sub-font-scale').css({'font-size' : windowWidth * 0.025 });
-				$('.timer-font-scale').css({'font-size' : windowWidth * 0.0275 });
-				$('.timer-text').css({'font-size' : windowWidth * 0.02 });
-				$('.white').css({'font-size' : windowWidth * 0.012 });
-				$('.scaling-font').css({'font-size' : windowWidth * 0.015 });
 			}
 			if (windowWidth < 400){
 				$('.font-helper').css({'font-size' : emScaler });
@@ -769,6 +767,23 @@ function specialFX(fx){
 			}, 200);
 		});
 	}
+
+// hover effect that resizes along with window resize
+jQuery( document ).ready(function( $ ) {
+	$(".test").mouseenter(function() {
+			$(this).css({'border' : '2px solid rgba(255, 0, 0, 1)'});
+		}).mouseleave(function() {
+			if (windowWidth <= 650 && roundCount === 1) {
+				$(this).css({'border' : '2px solid rgba(0, 255, 0, 1)'});
+			}
+			else if (windowWidth > 650 && windowWidth < 1024 && roundCount === 1) {
+				$(this).css({'border' : '4px solid rgba(0, 255, 0, 1)'});
+			}
+			else if (windowWidth >= 1024 && roundCount === 1) {
+				$(this).css({'border' : '5px solid rgba(0, 255, 0, 1)'});
+			}
+		});
+	});
 
 function blink() {
 	var blinkAmount1 = 0;
