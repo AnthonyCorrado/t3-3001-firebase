@@ -25,30 +25,7 @@ var stopShotClock = false;
 
 $(window).ready(function() {
 	fontScaler();
-	$('.font-helper').css({'font-size' : emScaler * 0.7 });
-	$('.player1Scored, .player2Scored').css({'font-size' : emScaler * 0.55 });
-	if (windowWidth > 680) {
-		$('.playersMarker').css({'font-size' : emScaler * 4 });
-	}
-	else if (windowWidth <= 680) {
-		$('.playersMarker').css({'font-size' : emScaler * 3.3 });
-	}
-	$('.custom-button').css({'font-size' : emScaler * 1.2 });
-	if (windowWidth > 800 && windowWidth < 1200) {
-		$('.sub-font-scale').css({'font-size' : windowWidth * 0.024 });
-	}
-	else if (windowWidth < 801)	{
-		$('.sub-font-scale').css({'font-size' : windowWidth * 0.035 });
-	}
-	else {
-		$('.sub-font-scale').css({'font-size' : windowWidth * 0.025 });
-	}
-	if (windowWidth < 400){
-		$('.font-helper').css({'font-size' : emScaler });
-	}
-	if (windowRatio > 1.4 && windowWidth <= 680){
-		$('.board-container').css({'margin-top' : '2.5%'});
-	}
+	fontScaler2();
 });
 
 // resize core elements on device orientation flip or window resize ----->
@@ -57,20 +34,7 @@ $( window ).resize(function() {
 	emScaler = windowWidth * 0.024;
 	markerSize = windowWidth * 0.035;
 	fontScaler();
-	$('.font-helper').css({'font-size' : emScaler * 0.75 });
-	$('.custom-button').css({'font-size' : emScaler * 1.2 });
-	if (windowWidth > 800 && windowWidth < 1200) {
-		$('.sub-font-scale').css({'font-size' : windowWidth * 0.024 });
-	}
-	else if (windowWidth < 801)	{
-		$('.sub-font-scale').css({'font-size' : windowWidth * 0.035 });
-	}
-	else {
-		$('.sub-font-scale').css({'font-size' : windowWidth * 0.025 });
-	}
-	if (windowWidth < 400){
-		$('.font-helper').css({'font-size' : emScaler });
-	}
+	fontScaler2();
 });
 // -------------------------------------------------------------
 
@@ -165,9 +129,29 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 					// counts until reaches zero
 					if ($scope.shotclock1 > 0) {
 						$scope.shotclock1 = $scope.shotclock1 - 1;
+						if ($scope.shotclock1 < 3) {
+						$('.danger1').css({
+							'color': '#F00',
+							'text-shadow' : '2px 2px 2px rgba(255, 0, 0, .7)'});
+						}
+						else {
+							$('.danger1').css({
+							'color': 'rgba(255, 255, 255, .8)',
+							'text-shadow' : '2px 2px 2px rgba(22, 120, 255, 1)'});
+						}
 					}
 					else if ($scope.shotclock2 > 0) {
 						$scope.shotclock2 = $scope.shotclock2 - 1;
+						if ($scope.shotclock2 < 3) {
+						$('.danger2').css({
+							'color': '#F00',
+							'text-shadow' : '2px 2px 2px rgba(255, 0, 0, .7)'});
+						}
+						else {
+							$('.danger2').css({
+							'color': 'rgba(255, 255, 255, .8)',
+							'text-shadow' : '2px 2px 2px rgba(111, 50, 177, 1)'});
+						}
 					}
 					else if ($scope.shotclock1 === 0){
 						altTurn();
@@ -191,6 +175,9 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 			mark = "X";
 			$scope.markerFX = 'X';
 		}
+		$('.danger1, .danger2').css({
+			'color': 'rgba(255, 255, 255, .8)',
+			'text-shadow' : '2px 2px 2px rgba(111, 50, 177, 1)'});
 		turnNum += 1;
 		nextUpFX();
 		shotClockStart();
@@ -621,6 +608,39 @@ function specialFX(fx){
 			}
 		});
 	}
+	function fontScaler2() {
+		jQuery( document ).ready(function( $ ) {
+      $('.font-helper').css({'font-size' : emScaler * 0.7 });
+			$('.player1Scored, .player2Scored').css({'font-size' : emScaler * 0.55 });
+			if (windowWidth > 680) {
+				$('.playersMarker').css({'font-size' : emScaler * 4 });
+				$('.timer-text').css({'font-size' : emScaler * 0.8 });
+			}
+			else if (windowWidth <= 680) {
+				$('.playersMarker').css({'font-size' : emScaler * 3.3 });
+				$('.timer-text').css({'font-size' : emScaler * 1 });
+			}
+			$('.custom-button').css({'font-size' : emScaler * 1.2 });
+			if (windowWidth > 800 && windowWidth < 1200) {
+				$('.sub-font-scale').css({'font-size' : windowWidth * 0.024 });
+			}
+			else if (windowWidth < 801)	{
+				$('.sub-font-scale').css({'font-size' : windowWidth * 0.035 });
+				$('.timer-font-scale').css({'font-size' : windowWidth * 0.035 });
+			}
+			else {
+				$('.sub-font-scale').css({'font-size' : windowWidth * 0.025 });
+				$('.timer-font-scale').css({'font-size' : windowWidth * 0.03 });
+			}
+			if (windowWidth < 400){
+				$('.font-helper').css({'font-size' : emScaler });
+			}
+			if (windowRatio > 1.4 && windowWidth <= 680){
+				$('.board-container').css({'margin-top' : '2.5%'});
+			}
+    });
+  }
+
 	function nextUpFX() {
 		jQuery( document ).ready(function( $ ) {
 			if (turnNum % 2 !== 0) {
@@ -727,7 +747,7 @@ function blink() {
 					$('.player2Scored').css({'opacity' : '0'});
 					setTimeout(function(){
 						$('.player2Scored').css({'opacity' : '1'});
-					},200);
+					},150);
 				}
       }
 		});
