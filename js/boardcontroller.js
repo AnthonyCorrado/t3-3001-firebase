@@ -23,6 +23,9 @@ var runShot;
 var stopShotClock = false;
 var scoreGap = 0;
 
+$(function() {
+   $('body').scrollTop(0);
+});
 
 $(window).ready(function() {
 	fontScaler();
