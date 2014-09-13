@@ -195,7 +195,7 @@ span {
 	text-shadow: 2px 2px 2px rgba(155, 155, 155, .7);
 }
 #timer-name {
-	width: 40%;
+	width: 39.5%;
 	background: url("../images/bg_nav_metal.png");
 	text-shadow: 1px 1px 1px rgba(0, 255, 0, .2);
 	display: inline-block;
@@ -281,7 +281,7 @@ span {
 	text-shadow: 2px 2px 2px rgba(111, 50, 177, 1);
 }
 #p2-timer-name {
-	width: 30%;
+	width: 29%;
 	float: right;
 	text-align: center;
 	background: url("../images/bg_nav_metal.png");
@@ -290,7 +290,7 @@ span {
 /*	border-left: 2px solid rgba(83, 13, 159, 1)*/
 }
 #p2-timer {
-	width: 29.6%;
+	width: 29%;
 	float: right;
 	display: inline-block;
 	text-shadow: 2px 2px 2px rgba(111, 50, 177, 1);
