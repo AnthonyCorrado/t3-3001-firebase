@@ -602,9 +602,11 @@ function specialFX(fx){
 		jQuery( document ).ready(function( $ ) {
 			if(windowRatio > 1.4 && windowWidth < 680) {
 				$('.markers').css({'font-size' : markerSize * 0.7 });
+				$('.timer-text').css({'padding-bottom' : emScaler * 0});
 			}
 			else {
 				$('.markers').css({'font-size' : markerSize });
+				$('.timer-text').css({'padding-bottom' : emScaler * 0.6});
 			}
 		});
 	}

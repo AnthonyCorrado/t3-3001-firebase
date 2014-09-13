@@ -35,7 +35,7 @@ body {
 	color: rgba(255, 255, 255, .8);
 	font-size: 2.2em;
 	text-align: center;
-	line-height: 1.5;
+/*	line-height: 1.5;*/
 	font-family: 'Audiowide', 'cursive';
 	text-shadow: 4px 4px 1px rgba(50, 50, 50, .8);
 }
@@ -178,7 +178,6 @@ span {
 #main-timer {
 	margin: 0 auto;
 	margin-top: 1%;
-	padding-bottom: 1px;
 	width: 30%;
 	border: 2px solid rgba(0, 255, 0, 1);
 	border-radius: 10px;
@@ -205,7 +204,7 @@ span {
 	color: rgba(255, 255, 255, .8);
 }
 #timer-count {
-	width: 40%;
+	width: 39.8%;
 	padding-top: 3%;
 	display: inline-block;
 }
@@ -248,7 +247,7 @@ span {
 	text-shadow: 3px 3px 5px rgba(22, 120, 255, 1);
 }
 #p1-timer {
-	width: 30%;
+	width: 29.9%;
 	float: left;
 	text-shadow: 2px 2px 2px rgba(22, 120, 255, 1);
 	display: inline-block;
@@ -291,7 +290,7 @@ span {
 /*	border-left: 2px solid rgba(83, 13, 159, 1)*/
 }
 #p2-timer {
-	width: 30%;
+	width: 29.9%;
 	float: right;
 	display: inline-block;
 	text-shadow: 2px 2px 2px rgba(111, 50, 177, 1);
@@ -496,6 +495,9 @@ span {
     .test {border: 5px solid rgba(0, 255, 0, 1); }
     .test:hover {border: 5px solid rgba(255, 0, 0, 1); }
     #title-text { font-size: 2em }}
+    #main-timer {
+    		padding-bottom: 1px;
+    }
 }
 
 @media (min-width: 1230px) { 
