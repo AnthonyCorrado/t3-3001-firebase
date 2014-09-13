@@ -26,6 +26,7 @@ var stopShotClock = false;
 $(window).ready(function() {
 	fontScaler();
 	fontScaler2();
+	borderScaler();
 });
 
 // resize core elements on device orientation flip or window resize ----->
@@ -35,6 +36,7 @@ $( window ).resize(function() {
 	markerSize = windowWidth * 0.035;
 	fontScaler();
 	fontScaler2();
+	borderScaler();
 });
 // -------------------------------------------------------------
 
@@ -622,15 +624,22 @@ function specialFX(fx){
 			if (windowWidth > 800 && windowWidth < 1200) {
 				$('.sub-font-scale').css({'font-size' : windowWidth * 0.024 });
 			}
+			// use these for the master font scaling methond ----------------->
 			else if (windowWidth < 801)	{
+				$('#title-text').css({'font-size' : emScaler });
 				$('.sub-font-scale').css({'font-size' : windowWidth * 0.035 });
 				$('.timer-font-scale').css({'font-size' : windowWidth * 0.035 });
 				$('.timer-text').css({'font-size' : windowWidth * 0.02 });
+				$('.scaling-font').css({'font-size' : windowWidth * 0.018 });
+				$('.white').css({'font-size' : windowWidth * 0.015 });
 			}
 			else {
+				$('#title-text').css({'font-size' : emScaler });
 				$('.sub-font-scale').css({'font-size' : windowWidth * 0.025 });
 				$('.timer-font-scale').css({'font-size' : windowWidth * 0.0275 });
 				$('.timer-text').css({'font-size' : windowWidth * 0.02 });
+				$('.white').css({'font-size' : windowWidth * 0.012 });
+				$('.scaling-font').css({'font-size' : windowWidth * 0.015 });
 			}
 			if (windowWidth < 400){
 				$('.font-helper').css({'font-size' : emScaler });
@@ -639,6 +648,41 @@ function specialFX(fx){
 				$('.board-container').css({'margin-top' : '2.5%'});
 			}
     });
+  }
+
+  function borderScaler() {
+		jQuery( document ).ready(function( $ ) {
+			$('.top-scoreboard').css({'height' : emScaler * 0.9});
+			$('.bottom-scoreboard').css({'height' : emScaler * 1.5});
+			$('#p1-timer-name').css({'height' : windowWidth * 0.02 });
+			$('#p2-timer-name').css({'height' : windowWidth * 0.02 });
+			$('#timer-name').css({'height' : windowWidth * 0.02 });
+			$('#p1-timer').css({'height' : windowWidth * 0.033 });
+			$('#p2-timer').css({'height' : windowWidth * 0.033 });
+			$('#timer-count').css({'height' : windowWidth * 0.033 });
+			if (windowWidth <= 650) {
+				$('#p1-scorebox').css({'border' : '2px solid rgba(22, 120, 255, 1)'});
+				$('#p2-scorebox').css({'border' : '2px solid rgba(111, 50, 177, 1)'});
+				if (roundCount === 1) {
+					$('.test').css({'border' : '2px solid rgba(0, 255, 0, 1)'});
+				}
+			}
+			else if (windowWidth > 650 && windowWidth < 1024) {
+				$('#p1-scorebox').css({'border' : '3px solid rgba(22, 120, 255, 1)'});
+				$('#p2-scorebox').css({'border' : '3px solid rgba(111, 50, 177, 1)'});
+				if (roundCount === 1) {
+					$('.test').css({'border' : '4px solid rgba(0, 255, 0, 1)'});
+				}
+			}
+			else {
+				$('#p1-scorebox').css({'border' : '4px solid rgba(22, 120, 255, 1)'});
+				$('#p2-scorebox').css({'border' : '4px solid rgba(111, 50, 177, 1)'});
+
+				if (roundCount === 1) {
+					$('.test').css({'border' : '5px solid rgba(0, 255, 0, 1)'});
+				}
+			}
+		});
   }
 
 	function nextUpFX() {

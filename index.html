@@ -77,7 +77,7 @@
 		</div>
 	</div>
 			<div id="p1-scorebox">
-				<div id="p1-score-name"><h6>Score</h6></div>
+				<div id="p1-score-name"><h6 class="scaling-font">Score</h6></div>
 				<!-- <div id="p1-timer-name"><h6>Timer</h6></div> -->	
 				<div id="p1-score"><h3 class="sub-font-scale"> {{ score1.length-1 }} </h3></div>
 				<!-- <div id="p1-timer"><h3 class="sub-font-scale"> {{ shotclock1 }} </h3></div> -->
@@ -89,17 +89,21 @@
 			<div class="player2Scored"><h5 class="p2ScoreText">P2 Scored</h5></div>
 
 			<div id="p2-scorebox">
-				<div id="p2-score-name"><h6>Score</h6></div>
+				<div id="p2-score-name"><h6 class="scaling-font">Score</h6></div>
 				<div id="p2-score"><h3 class="sub-font-scale"> {{ score2.length-1 }} </h3></div>
 			</div>
 
 			<div id="main-timer">
-				<div id="p1-timer-name"><h6 class="white">Timer</h6></div>
-				<div id="timer-name"><h6 class="white">Game Clock</h6></div>
-				<div id="p2-timer-name"><h6 class="white">Timer</h6></div>
-				<div id="p1-timer"><h6 class="danger1 timer-font-scale"> {{ shotclock1 }} </h6></div>
-				<div id="timer-count"><h6 class="timer-text"> {{ timer }} </h6></div>
-				<div id="p2-timer"><h6 class="danger2 timer-font-scale"> {{ shotclock2 }} </h6></div>
+				<div class="top-scoreboard">
+				  <div id="p1-timer-name"><h6 class="white">Timer</h6></div>
+				  <div id="timer-name"><h6 class="white">Clock</h6></div>
+				  <div id="p2-timer-name"><h6 class="white">Timer</h6></div>
+				</div>
+				<div class="bottom-scoreboard">
+				  <div id="p1-timer"><h6 class="danger1 timer-font-scale"> 0{{ shotclock1 }} </h6></div>
+				  <div id="timer-count"><h6 class="timer-text"> {{ timer }} </h6></div>
+				  <div id="p2-timer"><h6 class="danger2 timer-font-scale"> 0{{ shotclock2 }} </h6></div>
+				</div>
 			</div>
 
 		</div>
