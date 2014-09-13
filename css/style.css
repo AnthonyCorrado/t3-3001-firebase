@@ -12,7 +12,7 @@ body {
 	position: absolute;
 	background-color: rgba(0,0,0,.6);
 	z-index: 6;
-/*	display: none;*/
+	/*display: none;*/
 }
 .startPrompt {
 	margin: 0 5%;
@@ -164,7 +164,7 @@ span {
 }
 .scoreboard {
 	width: 100%;
-	padding-bottom: 5%;
+	padding-bottom: 3%;
 }
 .top-scoreboard {
 	width: 100%;
@@ -218,6 +218,33 @@ span {
 .scaling-font {
 	text-align: left;
 	padding: 0 5%;
+}
+.momentum-bar {
+	width: 30%;
+	margin: 0 auto;
+	margin-top: 1%;
+	height: 20px;
+}
+.bar1, .bar2 {
+	width: 50%;
+	float: left
+}
+.bar2 {
+	float: right;
+}
+.scoring-bar1, .scoring-bar2 {
+	width: 0;
+	height: 10px;
+	background-color: rgba(22, 120, 255, 0.5);
+	border-radius: 100px 0 0 100px;
+	display: block;
+	float: right;
+}
+.scoring-bar2 {
+	width: 0;
+	background-color: rgba(111, 50, 177, 0.5);
+	border-radius: 0 100px 100px 0 ;
+	float: left;
 }
 #p1-scorebox {
 	width: 12%;
@@ -363,7 +390,7 @@ span {
 /* halftime show and fx -------------------------*/
 
 /*  hack to engage iOS to use GPU */
-.fxScreen, .fx-text, .fxScreenOpen, .player1Lead, .player2Lead, .playersTied, .wave1Start, .wave2Start, .decoration-bar, .wave1-bar, .fire-bar, .player1Win, .player2Win, .tieGame, .endScreen {
+.fxScreen, .fx-text, .fxScreenOpen, .player1Lead, .player2Lead, .playersTied, .wave1Start, .wave2Start, .decoration-bar, .wave1-bar, .fire-bar, .player1Win, .player2Win, .tieGame, .endScreen, .board-container, .test, #main-timer, .white, .player1Scored, .player2Scored, #p1-scorebox, #p2-scorebox, .board-cover-left, .board-cover-right, body {
 	transform: translate3d(0,0,0);
 	-webkit-transform: translate3d(0,0,0);
 	-webkit-transform: translateZ(0);
@@ -525,6 +552,9 @@ span {
 	}
 	#p1-score, #p2-score {
 		margin: -4% 0;
+	}
+	.scoring-bar1, .scoring-bar2 {
+		height: 7px;
 	}
 }
 @media (max-width: 480px) {

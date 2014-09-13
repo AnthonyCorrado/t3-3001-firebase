@@ -21,6 +21,7 @@ var boardPosition2 = -12.2;
 var clockBreak = true;
 var runShot;
 var stopShotClock = false;
+var scoreGap = 0;
 
 
 $(window).ready(function() {
@@ -320,6 +321,7 @@ app.controller('boardController', ['$scope', '$interval', function ($scope, $int
 	var scoreTally = function() {
 		p1Score = p1ScoreIds.length - 1;
 		p2Score = p2ScoreIds.length - 1;
+		momentumBar();
 	};
 
 
@@ -768,6 +770,23 @@ function specialFX(fx){
 		});
 	}
 
+	function momentumBar() {
+		jQuery( document ).ready(function( $ ) {
+			scoreGap = (p1Score - p2Score) * 20;
+			console.log(scoreGap);
+			if (scoreGap > 0) {
+				$('.scoring-bar1').animate({'width' : scoreGap + "%"}, 500);
+				$('.scoring-bar2').animate({'width' : (scoreGap * -1) + "%"}, 500);
+			}
+			else if (scoreGap < 0) {
+				$('.scoring-bar2').animate({'width' : (scoreGap * -1) + "%"}, 500);
+			}
+			else {
+				$('.scoring-bar1').animate({'width' : "0"}, 500);
+				$('.scoring-bar2').animate({'width' : "0"}, 500);
+			}
+		});
+	}
 // hover effect that resizes along with window resize
 jQuery( document ).ready(function( $ ) {
 	$(".test").mouseenter(function() {
