@@ -602,11 +602,9 @@ function specialFX(fx){
 		jQuery( document ).ready(function( $ ) {
 			if(windowRatio > 1.4 && windowWidth < 680) {
 				$('.markers').css({'font-size' : markerSize * 0.7 });
-				$('.timer-text').css({'padding-bottom' : emScaler * 0});
 			}
 			else {
 				$('.markers').css({'font-size' : markerSize });
-				$('.timer-text').css({'padding-bottom' : emScaler * 0.6});
 			}
 		});
 	}
@@ -616,11 +614,9 @@ function specialFX(fx){
 			$('.player1Scored, .player2Scored').css({'font-size' : emScaler * 0.55 });
 			if (windowWidth > 680) {
 				$('.playersMarker').css({'font-size' : emScaler * 4 });
-				$('.timer-text').css({'font-size' : emScaler * 0.8 });
 			}
 			else if (windowWidth <= 680) {
 				$('.playersMarker').css({'font-size' : emScaler * 3.3 });
-				$('.timer-text').css({'font-size' : emScaler * 1 });
 			}
 			$('.custom-button').css({'font-size' : emScaler * 1.2 });
 			if (windowWidth > 800 && windowWidth < 1200) {
@@ -629,10 +625,12 @@ function specialFX(fx){
 			else if (windowWidth < 801)	{
 				$('.sub-font-scale').css({'font-size' : windowWidth * 0.035 });
 				$('.timer-font-scale').css({'font-size' : windowWidth * 0.035 });
+				$('.timer-text').css({'font-size' : windowWidth * 0.02 });
 			}
 			else {
 				$('.sub-font-scale').css({'font-size' : windowWidth * 0.025 });
-				$('.timer-font-scale').css({'font-size' : windowWidth * 0.03 });
+				$('.timer-font-scale').css({'font-size' : windowWidth * 0.0275 });
+				$('.timer-text').css({'font-size' : windowWidth * 0.02 });
 			}
 			if (windowWidth < 400){
 				$('.font-helper').css({'font-size' : emScaler });

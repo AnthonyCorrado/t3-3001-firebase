@@ -28,13 +28,11 @@ body {
 .font-helper {
 	text-shadow: 3px 3px 1px rgba(30, 30, 30, .9);
 	font-size: 1em;
-	line-height: 1;
 }
 .message-text {
 	color: rgba(255, 255, 255, .8);
 	font-size: 2.2em;
 	text-align: center;
-	line-height: 1.5;
 	font-family: 'Audiowide', 'cursive';
 	text-shadow: 4px 4px 1px rgba(50, 50, 50, .8);
 }
@@ -49,7 +47,6 @@ body {
 	background-color: rgba(0,0,0,.7);
 	text-align: center;
 	font-size: 2.5em;
-	line-height: .7;
 	font-family: 'Audiowide', 'cursive';
 	text-shadow: 3px 3px 3px rgba(0, 255, 0, .7);
 }
@@ -57,7 +54,6 @@ body {
 	width: 100%;
 	height: 100%;
 	position: absolute;
-
 	z-index: 4;
 	display: none;
 	transform: translate3d(0,0,0);
@@ -76,26 +72,22 @@ body {
 }
 /* end of startup animations and sequences -----------------*/
 h3, h4 {
+	margin: 0 auto;
 	text-align: center;
-	padding-top: 1%;
-	line-height: 0.3;
 	font-family: 'Audiowide', 'cursive'; 
 	color: rgba(255, 255, 255, .8);
 }
 h6 {
-	font-size: 6px;
-	line-height: 0.2;
 	font-family: 'Audiowide', 'cursive';
+	line-height: 1;
 }
 h5 {
 	font-size: 1em;
-	line-height: 0.2;
 	font-family: 'Audiowide', 'cursive';
 	color: silver;
 }
 .sub-font-scale {
 	font-size: 2em;
-	padding-top: 5px;
 }
 .container {
 	overflow: hidden;
@@ -139,7 +131,6 @@ span {
 	width: 1%;
 	background-color: yellow;
 }
-
 .board-container {
 	margin: 0 auto;
 	margin-left: 30.5%;
@@ -173,7 +164,9 @@ span {
 	height: 0;
 	padding-bottom: 11%;
 }
-
+.bottom-scoreboard {
+	width: 100%;
+}
 #main-timer {
 	margin: 0 auto;
 	margin-top: 1%;
@@ -185,34 +178,33 @@ span {
 	box-shadow: inset -7px 7px 15px 0px rgba(0,255,0,0.55);
 }
 .timer-text {
-	color: rgba(230, 230, 230, .7);
-	padding-bottom: 10%;
+	color: rgba(255, 255, 255, .8);
+	text-shadow: 1px 1px 1px rgba(0, 255, 0, .6);
 	text-align: center;
-	font-size: 1em;
-	line-height: .7;
 	font-family: 'Audiowide', 'cursive';
-	text-shadow: 2px 2px 2px rgba(155, 155, 155, .7);
+	line-height: -2;
 }
 #timer-name {
-	width: 40%;
-	background: url("../images/bg_nav_metal.png");
+	width: 37.5%;
+	margin: 0 auto;
+	/*background: url("../images/bg_nav_metal.png");*/
 	text-shadow: 1px 1px 1px rgba(0, 255, 0, .2);
 	display: inline-block;
-	float: left;
 	text-align: center;
 	color: rgba(255, 255, 255, .8);
 }
 #timer-count {
-	width: 40%;
-	height: 10px;
-	padding-top: 3%;
+	width: 37.5%;
 	display: inline-block;
 	text-align: center;
-	padding-bottom: 1%;
+	line-height: 0;
 }
 .timer-font-scale {
-	font-size: 2em;
-	padding-top: 5px;
+	font-size: 1em;
+}
+.white {
+	color: rgba(255, 255, 255, 0.7);
+	background-color: rgba(0, 255, 0, 0.3);
 }
 #p1-scorebox {
 	width: 12%;
@@ -235,26 +227,26 @@ span {
 }
 #p1-score {
 	width: 100%;
-	padding-top: 2%;
 	float: left;
 	text-shadow: 2px 2px 2px rgba(22, 120, 255, 1);
 }
 #p1-timer-name {
 	width: 30%;
-	float: left;
+	margin: 0 auto;
 	text-align: center;
-	background: url("../images/bg_nav_metal.png");
+	/*background: url("../images/bg_nav_metal.png");*/
 	border-radius: 10px 0 0 0;
-/*	border-right: 2px solid rgba(22, 120, 255, 1);*/
 	text-shadow: 3px 3px 5px rgba(22, 120, 255, 1);
+	display: inline-block;
+	border-right: 1px solid rgba(22, 120, 255, 1);
+	border-bottom: 1px solid rgba(22, 120, 255, 1);
 }
 #p1-timer {
-	width: 29.9%;
-	float: left;
+	width: 30%;
+	text-align: center;
 	text-shadow: 2px 2px 2px rgba(22, 120, 255, 1);
 	display: inline-block;
 	border-right: 1px solid rgba(22, 120, 255, 1);
-	/*background-color: rgba(22, 120, 255, 0.3);*/
 }
 #p2-scorebox {
 	width: 12%;
@@ -278,25 +270,24 @@ span {
 }
 #p2-score {
 	width: 100%;
-	padding-top: 2%;
 	float: right;
 	text-shadow: 2px 2px 2px rgba(111, 50, 177, 1);
 }
 #p2-timer-name {
-	width: 29.90%;
-	float: right;
+	width: 30%;
 	text-align: center;
-	background: url("../images/bg_nav_metal.png");
+	/*background: url("../images/bg_nav_metal.png");*/
 	border-radius: 0 10px 0 0;
 	text-shadow: 3px 3px 3px rgba(111, 50, 177, 1);
-/*	border-left: 2px solid rgba(83, 13, 159, 1)*/
+	display: inline-block;
+	border-left: 1px solid rgba(83, 13, 159, 1);
+	border-bottom: 1px solid rgba(83, 13, 159, 1);
 }
 #p2-timer {
-	width: 29.90%;
-	float: right;
+	width: 30%;
+	text-align: center;
 	display: inline-block;
 	text-shadow: 2px 2px 2px rgba(111, 50, 177, 1);
-	/*background-color: rgba(83, 13, 159, 0.3)*/
 	border-left: 1px solid rgba(83, 13, 159, 1);
 }
 #title {
@@ -309,6 +300,9 @@ span {
 	text-align: center;
 	font-family: 'Audiowide', 'cursive';
 	text-shadow: 3px 3px 1px rgba(50, 50, 50, .8);
+}
+.danger1, .danger2 {
+	color: rgba(255, 255, 255, 0.8);
 }
 /* board covers ----------------------------------------- */
 .board-cover-left {
@@ -450,7 +444,6 @@ span {
 .playersMarker {
 	color: #000;
 	font-family: 'Audiowide', 'cursive';
-	line-height: 1;
 }
 .player1Scored, .player2Scored {
 	width: 100%;
@@ -475,11 +468,8 @@ span {
 }
 .player
 @media (min-width: 630px) { 
-    h6 { font-size: .5em; line-height: .5;  } 
-    h3, h4 { line-height: 0.6; }
     .test {border: 4px solid rgba(0, 255, 0, 1); }
     .test:hover {border: 4px solid rgba(255, 0, 0, 1); }
-    .timer-text { font-size: 1.8em; }
     #title-text { font-size: 1.4em; }
     body { border-top: 15px solid rgba(255, 255, 255, .4); }
 		body { border-bottom: 15px solid rgba(255, 255, 255, .4);}
@@ -488,12 +478,9 @@ span {
 @media (min-width: 900px) { 
     .scoreboard { padding-bottom: 8%; }
     #title-text { font-size: 1.9em; }
-    .timer-text { font-size: 2.5em } 
 }
 
 @media (min-width: 1100px) { 
-    h6 { font-size: 1.1em; line-height: .75; }
-    h3, h4 { line-height: 1; } 
     .test {border: 5px solid rgba(0, 255, 0, 1); }
     .test:hover {border: 5px solid rgba(255, 0, 0, 1); }
     #title-text { font-size: 2em }}

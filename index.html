@@ -36,10 +36,12 @@
 				<h4 class="font-helper">
 					The board consists of 24 playable squares, with only nine active at a time. The grid shifts throughout the match changing the active field of play.
 				</h4>
+				<br />
 				<h4 class="font-helper">
 					Players alternate turns placing their marker in an attempt to score 3-in-a-row.
 					The game does not end on a score. A point is awarded and the match continues. Points can be score regardless of whether all three squares are active at the time.
 				</h4>
+				<br />
 				<h4 class="font-helper">
 					The match has two waves, with each round requiring a different set of skills. Wave 1 is 30 seconds long with the board shifting from left to right every 5 seconds. Wave 2 is 35 seconds long. After the first five seconds the board will shift every three seconds. The board now moves down and back requiring players to plan ahead.
 				</h4> 
@@ -90,13 +92,14 @@
 				<div id="p2-score-name"><h6>Score</h6></div>
 				<div id="p2-score"><h3 class="sub-font-scale"> {{ score2.length-1 }} </h3></div>
 			</div>
+
 			<div id="main-timer">
-				<div id="p1-timer-name"><h6>Timer</h6></div>
-				<div id="timer-name"><h6>Game Clock</h6></div>
-				<div id="p2-timer-name"><h6>Timer</h6></div>
-				<div id="p1-timer"><h3 class="danger1 timer-font-scale"> {{ shotclock1 }} </h3></div>
-				<div id="timer-count"><h1 class="timer-text"> {{ timer }} </h1></div>
-				<div id="p2-timer"><h3 class="danger2 timer-font-scale"> {{ shotclock2 }} </h3></div>		
+				<div id="p1-timer-name"><h6 class="white">Timer</h6></div>
+				<div id="timer-name"><h6 class="white">Game Clock</h6></div>
+				<div id="p2-timer-name"><h6 class="white">Timer</h6></div>
+				<div id="p1-timer"><h6 class="danger1 timer-font-scale"> {{ shotclock1 }} </h6></div>
+				<div id="timer-count"><h6 class="timer-text"> {{ timer }} </h6></div>
+				<div id="p2-timer"><h6 class="danger2 timer-font-scale"> {{ shotclock2 }} </h6></div>
 			</div>
 
 		</div>
