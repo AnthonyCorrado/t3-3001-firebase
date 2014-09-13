@@ -40,7 +40,7 @@ body {
 .custom-button {
 	width: 25%;
 	margin: 0 auto;
-	margin-top: 0;
+	margin-top: 1%;
 	padding-top: 1%;
 	color: #FFF;
 	border: 2px outset lime;

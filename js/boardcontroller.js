@@ -617,7 +617,11 @@ function specialFX(fx){
 		jQuery( document ).ready(function( $ ) {
       $('.font-helper').css({'font-size' : emScaler * 0.7 });
 			$('.player1Scored, .player2Scored').css({'font-size' : emScaler * 0.55 });
-			if (windowWidth > 680) {
+			if (windowWidth >= 1200){
+				$('#title-text').css({'font-size' : emScaler * 1.1 });
+				$('.timer-font-scale').css({'font-size' : windowWidth * 0.03 });
+			}
+			else if (windowWidth > 680) {
 				$('.playersMarker').css({'font-size' : emScaler * 4 });
 			}
 			else if (windowWidth <= 680) {
@@ -632,7 +636,6 @@ function specialFX(fx){
 				$('.white').css({'font-size' : windowWidth * 0.012 });
 				$('.scaling-font').css({'font-size' : windowWidth * 0.015 });
 			}
-			// use these for the master font scaling methond ----------------->
 			else if (windowWidth < 801)	{
 				$('#title-text').css({'font-size' : emScaler });
 				$('.sub-font-scale').css({'font-size' : windowWidth * 0.035 });
