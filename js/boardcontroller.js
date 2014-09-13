@@ -620,7 +620,7 @@ function specialFX(fx){
 			else if (windowWidth <= 680) {
 				$('.playersMarker').css({'font-size' : emScaler * 3.3 });
 			}
-			$('.custom-button').css({'font-size' : emScaler * 1.2 });
+			$('.custom-button').css({'font-size' : emScaler * 1 });
 			if (windowWidth > 800 && windowWidth < 1200) {
 				$('.sub-font-scale').css({'font-size' : windowWidth * 0.024 });
 			}
@@ -660,6 +660,7 @@ function specialFX(fx){
 			$('#p1-timer').css({'height' : windowWidth * 0.033 });
 			$('#p2-timer').css({'height' : windowWidth * 0.033 });
 			$('#timer-count').css({'height' : windowWidth * 0.033 });
+			$('.custom-button').css({'height' : windowWidth * 0.05 });
 			if (windowWidth <= 650) {
 				$('#p1-scorebox').css({'border' : '2px solid rgba(22, 120, 255, 1)'});
 				$('#p2-scorebox').css({'border' : '2px solid rgba(111, 50, 177, 1)'});

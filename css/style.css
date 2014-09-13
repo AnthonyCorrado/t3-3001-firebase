@@ -39,10 +39,8 @@ body {
 }
 .custom-button {
 	width: 25%;
-	height: 16%;
 	margin: 0 auto;
 	color: #FFF;
-	padding: 2%;
 	border: 5px outset lime;
 	border-radius: 5px;
 	background-color: rgba(0,0,0,.7);
