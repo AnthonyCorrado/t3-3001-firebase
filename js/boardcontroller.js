@@ -22,7 +22,7 @@ var clockBreak = true;
 var runShot;
 var stopShotClock = false;
 var scoreGap = 0;
-
+var catTesterGitDog;
 $(function() {
    $('body').scrollTop(0);
 });
