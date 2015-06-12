@@ -1,3 +1,6 @@
+
+// much...much refactoring needed! ASAP
+
 var windowWidth = $(window).width();
 var windowHeight = $(window).height();
 var windowRatio = (windowWidth / windowHeight);
